@@ -22,10 +22,9 @@ from commerce import settings
 
 
 urlpatterns = [
-
-
     path('', include('main.urls')),
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 
