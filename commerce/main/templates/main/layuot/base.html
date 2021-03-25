@@ -1,7 +1,7 @@
 {% load static %}
 
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,37 +13,23 @@
     </title>
 
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% endblock %}
+    {% endblock css %}
 
 </head>
 <body>
 
-    <div class="container">
+    {% include 'main/navigations/menu.html' %}
 
-        <header class="header content__wrp">
+    <main role="main" class="container">
 
-            {# logo #}
-            <div class="logo">
-                <a href="{% url 'home' %}">LOGO</a>
-            </div>
+        {% block content %}{% endblock content %}
 
-            {# menu #}
-            {% include 'main/navigations/menu.html' %}
+    </main>
 
-        </header>
-
-        <main class="main content__wrp">
-
-            {% block content %}{% endblock content %}
-
-        </main>
-
-        <footer></footer>
-
-    </div>
-
-    {% block js %}{% endblock %}
+    {% block js %}
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% endblock js %}
 </body>
 </html>
