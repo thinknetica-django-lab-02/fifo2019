@@ -1,0 +1,49 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>
+        {% block title %}{% endblock title %}
+    </title>
+
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="header content__wrp">
+
+            {# logo #}
+            <div class="logo">
+                <a href="{% url 'home' %}">LOGO</a>
+            </div>
+
+            {# menu #}
+            {% include 'main/navigations/menu.html' %}
+
+        </header>
+
+        <main class="main content__wrp">
+
+            {% block content %}{% endblock content %}
+
+        </main>
+
+        <footer></footer>
+
+    </div>
+
+    {% block js %}{% endblock %}
+</body>
+</html>
