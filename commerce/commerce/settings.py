@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'mptt',
-    'taggit',
     'main.apps.MainConfig',
 ]
 
@@ -135,8 +134,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 SITE_ID = 1
-
-TAGGIT_CASE_INSENSITIVE = True
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 

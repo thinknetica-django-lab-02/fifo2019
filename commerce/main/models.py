@@ -9,7 +9,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name="products")
-    title = models.CharField(max_length=128, verbose_name='Наименование')
+    tags = models.ManyToManyField('Tag', blank=True, verbose_name='Теги')
+    title = models.CharField(max_length=255, verbose_name='Наименование')
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL")
     image = models.ImageField(storage=OverwriteStorage(), upload_to='products/%Y%m%d/',
                               null=True, blank=True, verbose_name="Изображение")
@@ -32,8 +33,7 @@ class Product(models.Model):
 
 
 class Tag(models.Model):
-    title = models.CharField(max_length=128, unique=True, verbose_name='Тег')
-    product = models.ManyToManyField(Product)
+    title = models.CharField(max_length=50, unique=True, verbose_name='Тег')
 
     class Meta:
         verbose_name = 'Тег'
