@@ -9,6 +9,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name="products")
+    seller = models.ForeignKey('Seller', on_delete=models.SET_NULL,
+                               null=True, blank=True, verbose_name="Продавец", related_name="products")
     title = models.CharField(max_length=128, verbose_name='Наименование')
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL")
     image = models.ImageField(storage=OverwriteStorage(), upload_to='products/%Y%m%d/',
@@ -68,7 +70,6 @@ class Category(MPTTModel):
 
 class Seller(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Продавец")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Товар")
     image = models.ImageField(storage=OverwriteStorage(), upload_to='seller/%Y%m%d/',
                               null=True, blank=True, verbose_name="Аватарка")
 
