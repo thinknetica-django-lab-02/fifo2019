@@ -18,6 +18,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='Цена товара')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество на складе')
+    discount = models.IntegerField()
     is_active = models.BooleanField(default=True, verbose_name='Товар активен')
 
     class Meta:
