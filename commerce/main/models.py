@@ -31,7 +31,7 @@ class Product(models.Model):
         return reverse('product', kwargs={'product_slug': self.slug})
 
 
-class Image(models.Model):
+class Gallery(models.Model):
     image = models.ImageField(upload_to='products/', verbose_name="Изображение")
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="images", verbose_name="Товар")
 
