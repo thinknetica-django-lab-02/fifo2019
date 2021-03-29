@@ -1,4 +1,6 @@
 {% extends 'main/layuot/base.html' %}
+{% load main_filters %}
+
 
 {% block title %}
     {{ title }}
@@ -9,6 +11,8 @@
     <section>
 
         <h1>{{ title }}</h1>
+
+        {{ 'Привет, мир!'|inverted }}
 
         {% if turn_on_block %}
             <div class="m-3">

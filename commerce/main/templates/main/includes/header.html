@@ -1,9 +1,15 @@
+{% load main_tags %}
+
+
 <header class="navbar navbar-expand-md d-flex align-items-center justify-content-between
                navbar-dark bg-dark fixed-top">
 
     {% include 'main/navigations/menu.html' %}
 
     <div class="d-flex align-items-center">
+
+        <span class="mx-4 text-light">Время: {% get_date_server %}</span>
+
         <span class="mx-4 text-light">Сейчас на странице: <b>{{ request.user }}</b></span>
 
         <form class="d-flex">
