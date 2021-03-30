@@ -11,25 +11,56 @@
 
     <h1>{{ title }}</h1>
 
-    <div class="mt-4 d-flex justify-content-between flex-wrap">
-        {% for product in products %}
+    <div class="container">
+        <div class="row">
 
-            <div class="card m-3" style="width: 18rem; height: 400px;">
+            <div class="col">
+                <div class="mt-4 d-flex justify-content-between flex-wrap">
+                    {% for product in products %}
 
-                {% with gallery=product.gallery.first %}
-                    {% if gallery %}
-                        <img src="{{ gallery.image.url }}" width="200" height="200" class="card-img-top" alt="Изображение товара - {{ product.title }}">
-                    {% else %}
-                        <img src="{% static 'img/not-found.jpg' %}" width="200" height="200" class="card-img-top" alt="Нет изображения товара">
-                    {% endif %}
-                {% endwith %}
+                        <div class="card m-3" style="width: 18rem; height: 400px;">
 
-                <div class="card-body d-flex flex-column justify-content-between">
-                    <h5 class="card-title">{{ product.title }}</h5>
-                    <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                            {% with gallery=product.gallery.first %}
+                                {% if gallery %}
+                                    <img src="{{ gallery.image.url }}" width="200" height="200" class="card-img-top"
+                                         alt="Изображение товара - {{ product.title }}">
+                                {% else %}
+                                    <img src="{% static 'img/not-found.jpg' %}" width="200" height="200" class="card-img-top"
+                                         alt="Нет изображения товара">
+                                {% endif %}
+                            {% endwith %}
+
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <h5 class="card-title">{{ product.title }}</h5>
+                                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-        {% endfor %}
+
+
+            <div class="col col-lg-2">
+
+                <div class="d-flex justify-content-end" style="height: 36px;">
+                    {% if active_tag != 'all_goods' %}
+                        <a href="?tag=all_goods" class="btn-close "></a>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex flex-wrap">
+                    {% for tag in tags %}
+                        {% if active_tag == tag.title %}
+                            <a class="btn m-1 btn-outline-info active">{{ tag.title }}</a>
+                        {% else %}
+                            <a href="?tag={{ tag.title }}" class="btn m-1 btn-outline-info">{{ tag.title }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
     {# products paginator #}

@@ -3,7 +3,7 @@
 
         {% if page_obj.has_previous %}
             <li class="page-item" style="cursor: pointer;">
-                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                <a class="page-link" href="?tag={{ active_tag }}&page={{ page_obj.previous_page_number }}">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -12,13 +12,13 @@
         {% for current_page in paginator.page_range %}
             {% if current_page == page_obj.number %}
                 <li class="page-item active" style="cursor: pointer;">
-                    <a class="page-link" href="?page={{ current_page }}">
+                    <a class="page-link" href="?tag={{ active_tag }}&page={{ current_page }}">
                         {{ current_page }}
                     </a>
                 </li>
             {% elif current_page >= page_obj.number|add:-2 and current_page <= page_obj.number|add:2 %}
                 <li class="page-item" style="cursor: pointer;">
-                    <a class="page-link" href="?page={{ current_page }}">
+                    <a class="page-link" href="?tag={{ active_tag }}&page={{ current_page }}">
                         {{ current_page }}
                     </a>
                 </li>
@@ -27,7 +27,7 @@
 
         {% if page_obj.has_next %}
             <li class="page-item" style="cursor: pointer;">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                <a class="page-link" href="?tag={{ active_tag }}&page={{ page_obj.next_page_number }}">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

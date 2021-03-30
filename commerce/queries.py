@@ -16,6 +16,24 @@ Product.objects.create(
     quantity=3
 ).tags.add(lenove_tag)
 
+Product.objects.create(
+    category=laptops,
+    title='14" Ноутбук Lenovo ThinkBook 14 G2 ARE (20VF0035RU)',
+    short_desc='14" Ноутбук Lenovo ThinkBook 14 G2 ARE (20VF0035RU), AMD Ryzen 3 4300U (2.7 ГГц), RAM 8 ГБ, SSD 256 ГБ, AMD Radeon Graphics, Без системы, (20VF0035RU), серый',
+    slug='14-laptops-lenovo',
+    price=39590,
+    quantity=3
+).tags.add(lenove_tag)
+
+Product.objects.create(
+    category=laptops,
+    title='17.3" Ноутбук Lenovo IdeaPad 3 17ADA05',
+    short_desc='17.3" Ноутбук Lenovo IdeaPad 3 17ADA05, AMD Ryzen 3 3250U (2.6 ГГц), RAM 8 ГБ, SSD, AMD Radeon Graphics, Без системы, (81W2003XRK), голубой',
+    slug='17-laptops-lenovo',
+    price=52340,
+    quantity=3
+).tags.add(lenove_tag)
+
 acer_tag = Tag.objects.create(title='Acer')
 
 Product.objects.create(
