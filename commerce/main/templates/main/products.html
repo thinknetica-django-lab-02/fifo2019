@@ -1,5 +1,5 @@
 {% extends 'main/layuot/base.html' %}
-{% load main_filters %}
+
 {% load static %}
 
 {% block title %}
@@ -11,10 +11,10 @@
 
     <h1>{{ title }}</h1>
 
-    <div class="mt-4 d-flex justify-content-around flex-wrap">
+    <div class="mt-4 d-flex justify-content-between flex-wrap">
         {% for product in products %}
 
-            <div class="card m-3" style="width: 18rem;">
+            <div class="card m-3" style="width: 18rem; height: 400px;">
 
                 {% with gallery=product.gallery.first %}
                     {% if gallery %}
@@ -26,11 +26,17 @@
 
                 <div class="card-body d-flex flex-column justify-content-between">
                     <h5 class="card-title">{{ product.title }}</h5>
-                    <p class="card-text">{{ product.short_desc }}</p>
                     <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
         {% endfor %}
     </div>
+
+    {# products paginator #}
+    {% if page_obj.has_other_pages %}
+        <div class="mt-5 d-flex justify-content-center">
+            {% include 'main/navigations/products_paginator.html' %}
+        </div>
+    {% endif %}
 
 {% endblock content %}
