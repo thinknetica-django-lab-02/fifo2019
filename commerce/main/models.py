@@ -33,7 +33,7 @@ class Product(models.Model):
 
 class Gallery(models.Model):
     image = models.ImageField(upload_to='products/', verbose_name="Изображение")
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="images", verbose_name="Товар")
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="gallery", verbose_name="Товар")
 
     class Meta:
         verbose_name = 'Изображение'

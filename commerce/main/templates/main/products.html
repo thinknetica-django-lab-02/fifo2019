@@ -1,0 +1,36 @@
+{% extends 'main/layuot/base.html' %}
+{% load main_filters %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+
+{% block content %}
+
+    <h1>{{ title }}</h1>
+
+    <div class="mt-4 d-flex justify-content-around flex-wrap">
+        {% for product in products %}
+
+            <div class="card m-3" style="width: 18rem;">
+
+                {% with gallery=product.gallery.first %}
+                    {% if gallery %}
+                        <img src="{{ gallery.image.url }}" width="200" height="200" class="card-img-top" alt="Изображение товара - {{ product.title }}">
+                    {% else %}
+                        <img src="{% static 'img/not-found.jpg' %}" width="200" height="200" class="card-img-top" alt="Нет изображения товара">
+                    {% endif %}
+                {% endwith %}
+
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.short_desc }}</p>
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
