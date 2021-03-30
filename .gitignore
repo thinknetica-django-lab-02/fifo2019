@@ -153,5 +153,4 @@ help.txt
 
 migrations/
 !migrations/__init__.py
-!migrations/0004_product_discount.py
 

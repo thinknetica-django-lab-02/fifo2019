@@ -2,25 +2,21 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-from .utils import OverwriteStorage
-
 from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Product(models.Model):
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name="products")
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name="products", verbose_name="Категория")
     seller = models.ForeignKey('Seller', on_delete=models.SET_NULL,
-                               null=True, blank=True, verbose_name="Продавец", related_name="products")
+                               null=True, blank=True, related_name="products", verbose_name="Продавец")
     tags = models.ManyToManyField('Tag', blank=True, verbose_name='Теги')
     title = models.CharField(max_length=255, verbose_name='Наименование')
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL")
-    image = models.ImageField(storage=OverwriteStorage(), upload_to='products/%Y%m%d/',
-                              null=True, blank=True, verbose_name="Изображение")
     short_desc = models.CharField(max_length=60, blank=True, verbose_name='Краткое описание товара')
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='Цена товара')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество на складе')
-    discount = models.IntegerField()
+    discount = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True, verbose_name='Товар активен')
 
     class Meta:
@@ -33,6 +29,19 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product', kwargs={'product_slug': self.slug})
+
+
+class Gallery(models.Model):
+    image = models.ImageField(upload_to='products/', verbose_name="Изображение")
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="gallery", verbose_name="Товар")
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображений'
+        ordering = ['id']
+
+    def __str__(self):
+        return self.image
 
 
 class Tag(models.Model):
@@ -71,8 +80,7 @@ class Category(MPTTModel):
 
 class Seller(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Продавец")
-    image = models.ImageField(storage=OverwriteStorage(), upload_to='seller/%Y%m%d/',
-                              null=True, blank=True, verbose_name="Аватарка")
+    avatar = models.ImageField(upload_to='seller/', null=True, blank=True, verbose_name="Аватарка")
 
     class Meta:
         verbose_name = 'Продавец'
