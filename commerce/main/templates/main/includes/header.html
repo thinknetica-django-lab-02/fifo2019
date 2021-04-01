@@ -9,8 +9,29 @@
     <div class="d-flex align-items-center">
 
         <span class="mx-4 text-light">Время: {% get_date_server %}</span>
+        <span class="mx-4 text-light">
+            {% if request.user.is_authenticated %}
+                {% if request.user.get_full_name  %}
+                    Вошли как: <b>{{ request.user.get_full_name }}</b>
+                {% else %}
+                    Вошли как: <b>{{ request.user }}</b>
+                {% endif %}
+            {% endif %}
+        </span>
 
-        <span class="mx-4 text-light">Сейчас на странице: <b>{{ request.user }}</b></span>
+        <div class="mx-5 d-flex align-items-center" style="color:#ffffff;">
+
+            {% if request.user.is_authenticated %}
+                <span>
+                    <a href="{% url 'profile-update' %}" class="link-warning">Профиль</a> | <a href="#" class="link-warning">Выйти</a>
+                </span>
+            {% else %}
+                <span>
+                    <a href="#" class="link-warning">Регистрация</a> | <a href="#" class="link-warning">Войти</a>
+                </span>
+            {% endif %}
+
+        </div>
 
         <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

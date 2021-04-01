@@ -10,4 +10,5 @@ urlpatterns = [
     path('products/', ProductList.as_view(), name='products'),
     path('about/', views.flatpage, {'url': '/about/'}, name='about'),
     path('contacts/', views.flatpage, {'url': '/contacts/'}, name='contacts'),
+    path('accounts/profile/', ProfileUpdate.as_view(), name='profile-update'),
 ]
