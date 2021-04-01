@@ -1,10 +1,9 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from main.forms import *
-
 from main.models import Product, Tag
 
 
@@ -66,28 +65,47 @@ class ProductDetail(DetailView):
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
-    model = Profile
-    form_class = ProfileForm
+    model = User
+    form_class = UserForm
     template_name = 'main/auth/profile-update.html'
+    success_url = '/accounts/profile/'
+
+    def get_object(self, request):
+        return request.user
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = "Редактирование профиля"
+        context['profile_form'] = ProfileFormSet(instance=self.get_object(kwargs['request']))
         return context
 
-    def get_object(self, **kwargs):
-        user_pk = self.request.user.pk
-        if user_pk is None:
-            raise Http404
-        return get_object_or_404(Profile, user__pk=user_pk)
+    def get(self, request, *args, **kwargs):
+        """Метод обрабатывающий GET запрос.
+        Переопределяется только из-за self.get_object(request)
+        """
+        self.object = self.get_object(request)
+        return self.render_to_response(self.get_context_data(request=request))
 
-    def form_valid(self, form):
-        user = self.request.user
-        data = form.cleaned_data
-        user.first_name = data['first_name']
-        user.last_name = data['last_name']
-        user.email = data['email']
-        user.save()
-        return redirect('home')
+    def form_valid_formset(self, form, formset):
+        """Валидация вложенной формы и сохранение обеих форм."""
+        if formset.is_valid():
+            formset.save(commit=False)
+            formset.save()
+        else:
+            return HttpResponseRedirect(self.get_success_url())
+        form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def post(self, request, *args, **kwargs):
+        """Метод обрабатывающий POST запрос.
+        Здесь происходит валидация основной формы и создание инстанса формы данным POST запроса
+        """
+        self.object = self.get_object(request)
+        form = self.get_form()
+        profile_form = ProfileFormSet(self.request.POST, self.request.FILES, instance=self.object)
+        if form.is_valid():
+            return self.form_valid_formset(form, profile_form)
+        else:
+            return self.form_invalid(form)
 
 
