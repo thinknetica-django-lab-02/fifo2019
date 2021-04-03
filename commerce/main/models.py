@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.contrib.auth.models import User
+from main.validators import validator_age
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -95,6 +96,7 @@ class Seller(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", verbose_name="Пользователь")
+    date_of_birth = models.DateField(validators=[validator_age], verbose_name="Дата рождения")
 
     class Meta:
         verbose_name = f'Профиль пользователя'

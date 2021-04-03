@@ -69,11 +69,14 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
     form_class = UserForm
     template_name = 'main/auth/profile-update.html'
     success_url = '/accounts/profile/'
+    raise_exception = True
 
     def get_object(self, request):
+        """Получение пользователя из request."""
         return request.user
 
     def get_context_data(self, **kwargs):
+        """Добавление в контекст дополнительной формы"""
         context = super().get_context_data(**kwargs)
         context['title'] = "Редактирование профиля"
         context['profile_form'] = ProfileFormSet(instance=self.get_object(kwargs['request']))

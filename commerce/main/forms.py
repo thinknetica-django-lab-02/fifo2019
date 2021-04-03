@@ -1,16 +1,23 @@
 from django import forms
 from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
+# from main.validators import validator_age
+from datetime import date
+
 
 from main.models import Profile
 
 
 class ProfileForm(forms.ModelForm):
     user = forms.CharField(widget=forms.HiddenInput())
+    date_of_birth = forms.DateField(
+        label='Возраст',
+        widget=forms.DateInput(attrs={'class': 'form-control'})
+    )
 
     class Meta:
         model = Profile
-        fields = ('user', )
+        fields = ('user', 'date_of_birth')
 
 
 class UserForm(forms.ModelForm):
@@ -26,7 +33,7 @@ class UserForm(forms.ModelForm):
 ProfileFormSet = inlineformset_factory(
     User,
     Profile,
-    fields=('user', ),
+    form=ProfileForm,
     extra=0,
     min_num=1,
     can_delete=False

@@ -30,10 +30,16 @@
 
             {{ profile_form.management_form }}
             {% for inline_form in profile_form %}
-                {{ inline_form }}
-            {% endfor %}
 
-            {{ profile.as_p }}
+                <div class="col mw-100">
+                    <label for="{{ inline_form.id_for_label }}" class="form-label">{{ inline_form.label }}</label>
+                    <span>{{ inline_form }}</span>
+
+                    <div class="form-error">{{ inline_form.errors }}</div>
+
+                </div>
+
+            {% endfor %}
 
             <button type="submit" class="btn btn-outline-warning mt-5">Сохранить</button>
 
