@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'mptt',
+    'sorl.thumbnail',
     'main.apps.MainConfig',
 ]
 
@@ -194,3 +195,4 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+THUMBNAIL_FORCE_OVERWRITE = True

@@ -9,7 +9,7 @@ from main.models import Profile, Product, Category
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('title', 'seller', 'slug', 'short_desc', 'description', 'price', 'quantity', 'discount', 'category', 'tags')
+        fields = ('title', 'seller', 'slug', 'short_desc', 'description', 'image', 'price', 'quantity', 'discount', 'category', 'tags')
         widgets = {
             'seller': forms.HiddenInput()
         }
@@ -29,7 +29,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('user', 'date_of_birth')
+        fields = ('user', 'date_of_birth', 'avatar')
 
 
 class UserForm(forms.ModelForm):

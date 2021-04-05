@@ -154,3 +154,4 @@ help.txt
 migrations/
 !migrations/__init__.py
 
+/commerce/media/
