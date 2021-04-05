@@ -1,7 +1,9 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
+from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 from main.forms import *
 from main.models import Product, Tag
@@ -23,7 +25,7 @@ class ProductList(ListView):
 
     template_name = 'main/products.html'
     context_object_name = 'products'
-    paginate_by = 10
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -112,3 +114,34 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
             return self.form_invalid(form)
 
 
+class CreateProduct(LoginRequiredMixin, CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'main/product-form.html'
+    raise_exception = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Добавление товара"
+        context['mode'] = "create"
+        return context
+
+
+class EditProduct(LoginRequiredMixin, UpdateView):
+    model = Product
+    form_class = ProductForm
+    slug_url_kwarg = 'product_slug'
+    context_object_name = 'product'
+    template_name = 'main/product-form.html'
+    raise_exception = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Редактирование товара"
+        context['mode'] = "edit"
+        return context
+
+    def form_valid(self, form):
+        instance = form.save()
+        self.success_url = reverse('product', kwargs={'product_slug': instance.slug})
+        return super(EditProduct, self).form_valid(form)

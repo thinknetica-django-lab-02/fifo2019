@@ -1,11 +1,23 @@
 from django import forms
 from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
-# from main.validators import validator_age
-from datetime import date
 
 
-from main.models import Profile
+from main.models import Profile, Product, Category
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('title', 'seller', 'slug', 'short_desc', 'description', 'price', 'quantity', 'discount', 'category', 'tags')
+        widgets = {
+            'seller': forms.HiddenInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
 
 class ProfileForm(forms.ModelForm):
