@@ -1,15 +1,16 @@
-from datetime import date, datetime
+from datetime import datetime, date
 from django.forms import ValidationError
 
 
-def validator_age(value):
+def validator_age(date_of_birth):
     """Проверка возраста - 18 лет"""
 
-    today = date.today()
-    date_check = datetime.strptime(f"{today.year - 18}{today.month}{today.day}", '%Y%m%d').date()
+    today = datetime.now().date()
+    date_limit = date(today.year - 18, today.month, today.day)
+    diff = date_limit - date_of_birth
 
-    if date_check < value:
+    if diff.days < 0:
         raise ValidationError('Возраст меньше 18 лет!')
 
-    return value
+    return date_of_birth
 
