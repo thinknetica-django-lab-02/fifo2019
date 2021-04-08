@@ -1,15 +1,15 @@
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import redirect, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from main.forms import *
 from main.models import Product, Tag
 
 
 class Home(TemplateView):
+    """Главная страница"""
     template_name = "main/index.html"
 
     def get_context_data(self, **kwargs):
@@ -20,9 +20,9 @@ class Home(TemplateView):
 
 
 class ProductList(ListView):
+    """Список товаров"""
 
     model = Product
-
     template_name = 'main/products.html'
     context_object_name = 'products'
     paginate_by = 9
@@ -52,9 +52,9 @@ class ProductList(ListView):
 
 
 class ProductDetail(DetailView):
+    """Карточка товара"""
 
     model = Product
-
     template_name = 'main/product.html'
     slug_url_kwarg = 'product_slug'
     context_object_name = 'product'
@@ -67,11 +67,12 @@ class ProductDetail(DetailView):
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    """Редактирование профиля пользователя"""
     model = User
     form_class = UserForm
     template_name = 'main/auth/profile-update.html'
     success_url = '/accounts/profile/'
-    raise_exception = True
+    login_url = reverse_lazy('home')  # TODO: сменить на logout, когда будет представление
 
     def get_object(self, request):
         """Получение пользователя из request."""
@@ -115,10 +116,11 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
 
 
 class CreateProduct(LoginRequiredMixin, CreateView):
+    """Создание товара"""
     model = Product
     form_class = ProductForm
     template_name = 'main/product-form.html'
-    raise_exception = True
+    login_url = reverse_lazy('home')  # TODO: сменить на /logout/, когда будет представление
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -128,12 +130,13 @@ class CreateProduct(LoginRequiredMixin, CreateView):
 
 
 class EditProduct(LoginRequiredMixin, UpdateView):
+    """Редактирование карточки продукта"""
     model = Product
     form_class = ProductForm
     slug_url_kwarg = 'product_slug'
     context_object_name = 'product'
     template_name = 'main/product-form.html'
-    raise_exception = True
+    login_url = reverse_lazy('home')  # TODO: сменить на /logout/, когда будет представление
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
