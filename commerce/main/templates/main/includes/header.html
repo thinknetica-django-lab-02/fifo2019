@@ -1,4 +1,5 @@
 {% load main_tags %}
+{% load thumbnail %}
 
 
 <header class="navbar navbar-expand-md d-flex align-items-center justify-content-between
@@ -9,15 +10,25 @@
     <div class="d-flex align-items-center">
 
         <span class="mx-4 text-light">Время: {% get_date_server %}</span>
-        <span class="mx-4 text-light">
-            {% if request.user.is_authenticated %}
+
+        {% if request.user.is_authenticated %}
+            <span class="mx-4 text-light">
                 {% if request.user.get_full_name  %}
                     Вошли как: <b>{{ request.user.get_full_name }}</b>
                 {% else %}
                     Вошли как: <b>{{ request.user }}</b>
                 {% endif %}
-            {% endif %}
-        </span>
+            </span>
+
+            {% thumbnail request.user.profile.avatar "50x50" crop="center" as im %}
+                <img src="{{ im.url }}"
+                     alt="Изображение {{ im.title }}"
+                     width="{{ im.width }}"
+                     height="{{ im.height }}"
+                     style="object-fit: contain; border-radius: 30px;"
+                >
+            {% endthumbnail %}
+        {% endif %}
 
         <div class="mx-5 d-flex align-items-center" style="color:#ffffff;">
 

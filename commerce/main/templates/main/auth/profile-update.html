@@ -1,6 +1,8 @@
 {% extends 'main/layuot/base.html' %}
 
 {% load static %}
+{% load thumbnail %}
+
 
 {% block title %}
     {{ title }}
@@ -11,9 +13,20 @@
 
     <h1>{{ title }}</h1>
 
-    <div class="mt-5 d-flex justify-content-center ">
+    <div class="m-5 d-flex justify-content-center flex-column">
 
-        <form method="post" class="row g-3 w-25 d-flex flex-column">
+        <div class="mb-3">
+            {% thumbnail request.user.profile.avatar "150x150" crop="center" as im %}
+                <img src="{{ im.url }}"
+                     alt="Изображение {{ im.title }}"
+                     width="{{ im.width }}"
+                     height="{{ im.height }}"
+                     style="object-fit: contain; border-radius: 30px;"
+                >
+            {% endthumbnail %}
+        </div>
+
+        <form method="post" class="row g-3 w-25 d-flex flex-column" enctype="multipart/form-data">
 
             {% csrf_token %}
 

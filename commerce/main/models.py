@@ -15,6 +15,7 @@ class Product(models.Model):
     tags = models.ManyToManyField('Tag', blank=True, verbose_name='Теги')
     title = models.CharField(max_length=255, verbose_name='Наименование')
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Slug")
+    image = models.ImageField(upload_to='products/', blank=True, null=True, verbose_name="Изображение")
     short_desc = models.CharField(max_length=60, blank=True, verbose_name='Краткое описание товара')
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='Цена товара')
@@ -97,6 +98,7 @@ class Seller(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", verbose_name="Пользователь")
     date_of_birth = models.DateField(validators=[validator_age], verbose_name="Дата рождения")
+    avatar = models.ImageField(upload_to='profile/', null=True, blank=True, verbose_name="Аватарка")
 
     class Meta:
         verbose_name = f'Профиль пользователя'

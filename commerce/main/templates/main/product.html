@@ -1,6 +1,8 @@
 {% extends 'main/layuot/base.html' %}
 {% load main_filters %}
 {% load static %}
+{% load thumbnail %}
+
 
 {% block title %}
     {{ title }}
@@ -13,16 +15,26 @@
 
     <div class="d-flex justify-content-center">
 
-        <div>
-           {% with gallery=product.gallery.first %}
-                {% if gallery %}
-                    <img src="{{ gallery.image.url }}" width="500" height="500" class="rounded float-start" alt="Изображение товара - {{ product.title }}">
-                {% else %}
-                    <img src="{% static 'img/not-found.jpg' %}" width="500" height="500" class="rounded float-start" alt="Нет изображения товара">
-                {% endif %}
-            {% endwith %}
-        </div>
+{#        <div>#}
+{#           {% with gallery=product.gallery.first %}#}
+{#                {% if gallery %}#}
+{#                    <img src="{{ gallery.image.url }}" width="500" height="500" class="rounded float-start" alt="Изображение товара - {{ product.title }}">#}
+{#                {% else %}#}
+{#                    <img src="{% static 'img/not-found.jpg' %}" width="500" height="500" class="rounded float-start" alt="Нет изображения товара">#}
+{#                {% endif %}#}
+{#            {% endwith %}#}
+{#        </div>#}
 
+        <div class="m-5">
+            {% thumbnail product.image "400x400" crop="center" as im %}
+                <img src="{{ im.url }}"
+                     alt="Изображение {{ im.title }}"
+                     width="{{ im.width }}"
+                     height="{{ im.height }}"
+                     style="object-fit: contain"
+                >
+            {% endthumbnail %}
+        </div>
 
         <div class="card-body mt-5">
             {% if product.description %}
