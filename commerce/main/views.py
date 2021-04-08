@@ -72,7 +72,7 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
     form_class = UserForm
     template_name = 'main/auth/profile-update.html'
     success_url = '/accounts/profile/'
-    login_url = reverse_lazy('home')  # TODO: сменить на logout, когда будет представление
+    login_url = reverse_lazy('account_login')
 
     def get_object(self, request):
         """Получение пользователя из request."""
@@ -120,7 +120,7 @@ class CreateProduct(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'main/product-form.html'
-    login_url = reverse_lazy('home')  # TODO: сменить на /logout/, когда будет представление
+    login_url = reverse_lazy('account_login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -136,7 +136,7 @@ class EditProduct(LoginRequiredMixin, UpdateView):
     slug_url_kwarg = 'product_slug'
     context_object_name = 'product'
     template_name = 'main/product-form.html'
-    login_url = reverse_lazy('home')  # TODO: сменить на /logout/, когда будет представление
+    login_url = reverse_lazy('account_login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

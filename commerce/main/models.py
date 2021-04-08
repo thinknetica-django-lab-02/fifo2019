@@ -97,7 +97,7 @@ class Seller(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", verbose_name="Пользователь")
-    date_of_birth = models.DateField(validators=[validator_age], verbose_name="Дата рождения")
+    date_of_birth = models.DateField(validators=[validator_age], blank=True, null=True, verbose_name="Дата рождения")
     avatar = models.ImageField(upload_to='profile/', null=True, blank=True, verbose_name="Аватарка")
 
     class Meta:
@@ -107,3 +107,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"Профиль: {self.user.username}"
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+

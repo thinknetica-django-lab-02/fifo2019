@@ -36,11 +36,12 @@
                 <span>
                     <a href="{% url 'create-product' %}" class="link-warning">Добавить товар</a>
                     | <a href="{% url 'profile-update' %}" class="link-warning">Профиль</a>
-                    | <a href="#" class="link-warning">Выйти</a>
+                    | <a href="{% url 'account_logout' %}" class="link-warning">Выйти</a>
                 </span>
             {% else %}
                 <span>
-                    <a href="#" class="link-warning">Регистрация</a> | <a href="#" class="link-warning">Войти</a>
+                    <a href="{% url 'account_signup' %}" class="link-warning">Регистрация</a> |
+                    <a href="{% url 'account_login' %}" class="link-warning">Войти</a>
                 </span>
             {% endif %}
 
