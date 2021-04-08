@@ -23,7 +23,9 @@
 
             {% if request.user.is_authenticated %}
                 <span>
-                    <a href="{% url 'profile-update' %}" class="link-warning">Профиль</a> | <a href="#" class="link-warning">Выйти</a>
+                    <a href="{% url 'create-product' %}" class="link-warning">Добавить товар</a>
+                    | <a href="{% url 'profile-update' %}" class="link-warning">Профиль</a>
+                    | <a href="#" class="link-warning">Выйти</a>
                 </span>
             {% else %}
                 <span>

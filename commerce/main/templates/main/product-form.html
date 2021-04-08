@@ -1,0 +1,29 @@
+{% extends 'main/layuot/base.html' %}
+{% load main_filters %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<form method="post" class="w-75">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-outline-warning w-25 mb-5">
+        {% if mode == 'create' %}
+            Создать
+        {% elif mode == 'edit' %}
+            Сохранить
+        {% endif %}
+    </button>
+
+</form>
+
+{% endblock content %}

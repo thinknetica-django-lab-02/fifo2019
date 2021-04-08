@@ -14,12 +14,12 @@ class Product(models.Model):
                                null=True, blank=True, related_name="products", verbose_name="Продавец")
     tags = models.ManyToManyField('Tag', blank=True, verbose_name='Теги')
     title = models.CharField(max_length=255, verbose_name='Наименование')
-    slug = models.SlugField(max_length=255, unique=True, verbose_name="URL")
+    slug = models.SlugField(max_length=255, unique=True, verbose_name="Slug")
     short_desc = models.CharField(max_length=60, blank=True, verbose_name='Краткое описание товара')
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='Цена товара')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество на складе')
-    discount = models.IntegerField(default=0)
+    discount = models.IntegerField(default=0, verbose_name='Скидка')
     is_active = models.BooleanField(default=True, verbose_name='Товар активен')
 
     class Meta:
