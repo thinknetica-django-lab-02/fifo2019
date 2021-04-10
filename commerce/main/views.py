@@ -148,3 +148,5 @@ class EditProduct(LoginRequiredMixin, UpdateView):
         instance = form.save()
         self.success_url = reverse('product', kwargs={'product_slug': instance.slug})
         return super(EditProduct, self).form_valid(form)
+
+

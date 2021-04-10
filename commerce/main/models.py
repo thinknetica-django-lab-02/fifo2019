@@ -4,6 +4,8 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from main.validators import validator_age
+from django.core.mail import EmailMultiAlternatives, send_mail
+from allauth.account.signals import user_signed_up
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -109,12 +111,24 @@ class Profile(models.Model):
         return f"Профиль: {self.user.username}"
 
     @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
+    def user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
             instance.groups.add(Group.objects.get_or_create(name='common users')[0])
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
+
+@receiver(user_signed_up)
+def user_signed_up_(sender, request, user, **kwargs):
+    # subject, from_email, to = f"Успешная регистрация {user}", 'paveldudkov003@gmail.com', user.email
+    # text_content = 'Благодарим Вас за регистрации на нашем сайте!'
+    # html_content = '<p>Благодарим Вас за регистрации на нашем сайте!</p>'
+    # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    # msg.attach_alternative(html_content, "text/html")
+    # msg.send()
+    send_mail(
+        f'Успешная регистрация {user}',
+        'Благодарим Вас за регистрацию.',
+        'from@example.com',
+        ['from@example.com'],
+    )
