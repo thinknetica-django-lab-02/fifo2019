@@ -120,15 +120,9 @@ class Profile(models.Model):
 
 @receiver(user_signed_up)
 def user_signed_up_(sender, request, user, **kwargs):
-    # subject, from_email, to = f"Успешная регистрация {user}", 'paveldudkov003@gmail.com', user.email
-    # text_content = 'Благодарим Вас за регистрации на нашем сайте!'
-    # html_content = '<p>Благодарим Вас за регистрации на нашем сайте!</p>'
-    # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-    # msg.attach_alternative(html_content, "text/html")
-    # msg.send()
-    send_mail(
-        f'Успешная регистрация {user}',
-        'Благодарим Вас за регистрацию.',
-        'from@example.com',
-        ['from@example.com'],
-    )
+    subject, from_email, to = f"Пользователь {user}", 'paveldudkov003@gmail.com', user.email
+    text_content = 'Благодарим Вас за интерес к нашему сайту!'
+    html_content = '<p>Благодарим Вас за интерес к нашему сайту!</p>'
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()

@@ -183,24 +183,23 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 # Sign IN settings
-# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 # Sign UP settings
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_USERNAME_REQUIRED = False
-#
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-#
-# ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
 
 LOGIN_REDIRECT_URL = 'home'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'paveldudkov003@gmail.com'
-# EMAIL_HOST_PASSWORD = 'oiomkdzelqykjfrr'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'paveldudkov003@gmail.com'
+EMAIL_HOST_PASSWORD = 'oiomkdzelqykjfrr'
