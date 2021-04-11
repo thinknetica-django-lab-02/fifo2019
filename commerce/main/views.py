@@ -3,7 +3,6 @@ from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-from django.shortcuts import get_object_or_404
 
 from main.forms import *
 from main.models import *

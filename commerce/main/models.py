@@ -8,6 +8,9 @@ from django.core.mail import EmailMultiAlternatives
 from allauth.account.signals import user_signed_up
 from pytils.translit import slugify
 
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
+
 from mptt.models import MPTTModel, TreeForeignKey
 
 
@@ -152,7 +155,7 @@ def get_subsciber(sender, instance, created, **kwargs):
     if created:
         emails = [e.user.email for e in Subsciber.objects.all()]
         subject = f"Новый товар: {instance.title}"
-        text_content = f"Появился новый товар {instance.title}. Все подробности по ссылке {instance.get_absolute_url}"
+        text_content = f"Появился новый товар {instance.title}. Все подробности по ссылке {instance.get_absolute_url()}"
         html_content = f'''
             <h1>Появился новый товар {instance.title}</h1>
             <ul>
@@ -163,3 +166,30 @@ def get_subsciber(sender, instance, created, **kwargs):
         '''
         from_email = 'paveldudkov003@gmail.com'
         sending_html_mail(subject, text_content, html_content, from_email, emails)
+
+
+def sending_new_products():
+    print('Сработало задание')
+    emails = [e.user.email for e in Subsciber.objects.all()]
+    products = Product.objects.order_by('-id')[:5]
+    subject = f"Новый товары за неделю!"
+    text_content = ""
+    html_content = ""
+    for product in products:
+        text_content += f"{product.title}, "
+        html_content += f"""<p>{product.title}</p><br>"""
+    from_email = 'paveldudkov003@gmail.com'
+    sending_html_mail(subject, text_content, html_content, from_email, emails)
+
+
+sched = BackgroundScheduler()
+
+sched.add_job(
+    sending_new_products, 'cron',
+    day_of_week='sun', hour=14, minute=00,
+    timezone='Europe/Moscow', start_date='2021-04-11'
+)
+
+sched.start()
+
+atexit.register(lambda: sched.shutdown())
