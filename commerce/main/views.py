@@ -3,9 +3,10 @@ from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
+from django.shortcuts import get_object_or_404
 
 from main.forms import *
-from main.models import Product, Tag
+from main.models import *
 
 
 class Home(TemplateView):
@@ -31,6 +32,7 @@ class ProductList(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Продукты'
         context['active_tag'] = 'all_goods'
+        context['subsciber'] = Subsciber.objects.filter(user=self.request.user).first()
         context['tags'] = Tag.objects.all()
 
         if self.request.GET.get('tag'):
@@ -49,6 +51,18 @@ class ProductList(ListView):
                 return queryset.filter(tags__title=tag_name)
 
         return queryset
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('mailing'):
+            mailing = request.POST.get('mailing')
+            if mailing == 'subscibe':
+                Subsciber.objects.create(user=request.user)
+            elif mailing == 'unsubscribe':
+                subsciber = Subsciber.objects.filter(user_id=request.user.pk).first()
+                if subsciber:
+                    subsciber.delete()
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class ProductDetail(DetailView):

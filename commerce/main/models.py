@@ -1,11 +1,12 @@
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from main.validators import validator_age
-from django.core.mail import EmailMultiAlternatives, send_mail
+from django.core.mail import EmailMultiAlternatives
 from allauth.account.signals import user_signed_up
+from pytils.translit import slugify
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -118,11 +119,47 @@ class Profile(models.Model):
         instance.profile.save()
 
 
+class Subsciber(models.Model):
+    """Подписка на рассылку"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="subsciber", verbose_name="Пользователь")
+
+    def __str__(self):
+        return self.user.username
+
+
+@receiver(pre_save, sender=Product)
+def set_slug(sender, instance, *args, **kwargs):
+    """Автозаполняет slug"""
+    instance.slug = slugify(instance.title)
+
+
 @receiver(user_signed_up)
 def user_signed_up_(sender, request, user, **kwargs):
-    subject, from_email, to = f"Пользователь {user}", 'paveldudkov003@gmail.com', user.email
+    subject, from_email, to_list = f"Пользователь {user}", 'paveldudkov003@gmail.com', [user.email]
     text_content = 'Благодарим Вас за интерес к нашему сайту!'
     html_content = '<p>Благодарим Вас за интерес к нашему сайту!</p>'
-    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    sending_html_mail(subject, text_content, html_content, from_email, to_list)
+
+
+def sending_html_mail(subject, text_content, html_content, from_email, to_list):
+    msg = EmailMultiAlternatives(subject, text_content, from_email, to_list)
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+
+
+@receiver(post_save, sender=Product)
+def get_subsciber(sender, instance, created, **kwargs):
+    if created:
+        emails = [e.user.email for e in Subsciber.objects.all()]
+        subject = f"Новый товар: {instance.title}"
+        text_content = f"Появился новый товар {instance.title}. Все подробности по ссылке {instance.get_absolute_url}"
+        html_content = f'''
+            <h1>Появился новый товар {instance.title}</h1>
+            <ul>
+                <li>Описание: {instance.description}</li>
+                <li>Цена: {instance.price}</li>
+            </ul>
+            Все подробности <a href="{instance.get_absolute_url()}">по ссылке</a>.
+        '''
+        from_email = 'paveldudkov003@gmail.com'
+        sending_html_mail(subject, text_content, html_content, from_email, emails)

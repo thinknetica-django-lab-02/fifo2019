@@ -78,6 +78,23 @@
                     {% endfor %}
                 </div>
 
+                <div class="p-4 mt-5" style="border: 1px solid black; border-radius: 10px;">
+                    {% if user.is_authenticated %}
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {% if subsciber %}
+                                <p><b>Надоела рассылка?</b></p>
+                                <input type="hidden" name="mailing" value="unsubscribe">
+                                <button type="submit" class="btn btn-warning">Отписаться</button>
+                            {% else %}
+                                <p><b>Следите за поступлением новых товаров</b></p>
+                                <input type="hidden" name="mailing" value="subscibe">
+                                <button type="submit" class="btn btn-warning">Подписаться</button>
+                            {% endif %}
+                        </form>
+                    {% endif %}
+                </div>
+
             </div>
 
         </div>
