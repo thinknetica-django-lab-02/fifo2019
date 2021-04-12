@@ -12,6 +12,7 @@ import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from mptt.models import MPTTModel, TreeForeignKey
+from commerce import settings
 
 
 class Product(models.Model):
@@ -164,7 +165,7 @@ def get_subsciber(sender, instance, created, **kwargs):
             </ul>
             Все подробности <a href="{instance.get_absolute_url()}">по ссылке</a>.
         '''
-        from_email = 'paveldudkov003@gmail.com'
+        from_email = settings.EMAIL_HOST_USER
         sending_html_mail(subject, text_content, html_content, from_email, emails)
 
 
@@ -178,7 +179,7 @@ def sending_new_products():
     for product in products:
         text_content += f"{product.title}, "
         html_content += f"""<p>{product.title}</p><br>"""
-    from_email = 'paveldudkov003@gmail.com'
+    from_email = settings.EMAIL_HOST_USER
     sending_html_mail(subject, text_content, html_content, from_email, emails)
 
 

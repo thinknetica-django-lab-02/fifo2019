@@ -203,3 +203,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'paveldudkov003@gmail.com'
 EMAIL_HOST_PASSWORD = 'oiomkdzelqykjfrr'
+
+
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
