@@ -1,6 +1,6 @@
 import os
-
 from celery import Celery
+from commerce.settings import INSTALLED_APPS
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'commerce.settings')
@@ -14,10 +14,5 @@ app = Celery('commerce')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Load task modules from all registered Django app configs.
-app.autodiscover_tasks()
-
-
-@app.task
-def add(x):
-    return x**2
+app.autodiscover_tasks(lambda: INSTALLED_APPS)
 

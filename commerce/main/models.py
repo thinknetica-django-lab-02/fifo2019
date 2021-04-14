@@ -4,7 +4,6 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from main.validators import validator_age
-from django.core.mail import EmailMultiAlternatives
 from allauth.account.signals import user_signed_up
 from pytils.translit import slugify
 
@@ -13,6 +12,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 from mptt.models import MPTTModel, TreeForeignKey
 from commerce import settings
+
+from main.tasks import sending_html_mail_task
 
 
 class Product(models.Model):
@@ -142,17 +143,11 @@ def user_signed_up_(sender, request, user, **kwargs):
     subject, from_email, to_list = f"Пользователь {user}", 'paveldudkov003@gmail.com', [user.email]
     text_content = 'Благодарим Вас за интерес к нашему сайту!'
     html_content = '<p>Благодарим Вас за интерес к нашему сайту!</p>'
-    sending_html_mail(subject, text_content, html_content, from_email, to_list)
-
-
-def sending_html_mail(subject, text_content, html_content, from_email, to_list):
-    msg = EmailMultiAlternatives(subject, text_content, from_email, to_list)
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
+    sending_html_mail_task.delay(subject, text_content, html_content, from_email, to_list)
 
 
 @receiver(post_save, sender=Product)
-def get_subsciber(sender, instance, created, **kwargs):
+def send_new_product(sender, instance, created, **kwargs):
     if created:
         emails = [e.user.email for e in Subsciber.objects.all()]
         subject = f"Новый товар: {instance.title}"
@@ -166,7 +161,7 @@ def get_subsciber(sender, instance, created, **kwargs):
             Все подробности <a href="{instance.get_absolute_url()}">по ссылке</a>.
         '''
         from_email = settings.EMAIL_HOST_USER
-        sending_html_mail(subject, text_content, html_content, from_email, emails)
+        sending_html_mail_task.delay(subject, text_content, html_content, from_email, emails)
 
 
 def sending_new_products():
@@ -180,7 +175,7 @@ def sending_new_products():
         text_content += f"{product.title}, "
         html_content += f"""<p>{product.title}</p><br>"""
     from_email = settings.EMAIL_HOST_USER
-    sending_html_mail(subject, text_content, html_content, from_email, emails)
+    sending_html_mail_task.delay(subject, text_content, html_content, from_email, emails)
 
 
 sched = BackgroundScheduler()
