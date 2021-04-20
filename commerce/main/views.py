@@ -31,7 +31,7 @@ class ProductList(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Продукты'
         context['active_tag'] = 'all_goods'
-        context['subsciber'] = Subsciber.objects.filter(user=self.request.user).first()
+        context['subsciber'] = Subsciber.objects.filter(user__pk=self.request.user.pk).first()
         context['tags'] = Tag.objects.all()
 
         if self.request.GET.get('tag'):

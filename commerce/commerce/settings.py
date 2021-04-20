@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -211,3 +212,11 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_STORE_ERRORS_EVEN_IF_IGNORED = True
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_BEAT_SCHEDULE = {
+    'sending_new_products_in_mail': {
+        'task': 'main.tasks.sending_new_products',
+        'schedule': crontab(hour=21, minute=56, day_of_week=2),
+    },
+}

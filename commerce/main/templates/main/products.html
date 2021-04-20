@@ -78,8 +78,8 @@
                     {% endfor %}
                 </div>
 
-                <div class="p-4 mt-5" style="border: 1px solid black; border-radius: 10px;">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated and products %}
+                    <div class="p-4 mt-5" style="border: 1px solid black; border-radius: 10px;">
                         <form action="" method="post">
                             {% csrf_token %}
                             {% if subsciber %}
@@ -92,9 +92,8 @@
                                 <button type="submit" class="btn btn-warning">Подписаться</button>
                             {% endif %}
                         </form>
-                    {% endif %}
-                </div>
-
+                    </div>
+                {% endif %}
             </div>
 
         </div>

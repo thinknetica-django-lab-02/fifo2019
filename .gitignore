@@ -156,3 +156,8 @@ migrations/
 
 /commerce/media/
 
+/.
+/commerce/celerybeat-schedule.bak
+/commerce/celerybeat.pid
+/commerce/celerybeat-schedule.dat
+/commerce/celerybeat-schedule.dir

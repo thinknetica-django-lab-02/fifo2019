@@ -16,6 +16,10 @@ class ProductAdmin(admin.ModelAdmin):
     exclude = ('slug',)
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("title",)}
+
+
 class SubsciberAdmin(admin.ModelAdmin):
     pass
 
@@ -24,4 +28,5 @@ admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, CreditFlatPageAdmin)
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subsciber, SubsciberAdmin)

@@ -4,16 +4,15 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from main.validators import validator_age
-from allauth.account.signals import user_signed_up
 from pytils.translit import slugify
 
-import atexit
-from apscheduler.schedulers.background import BackgroundScheduler
+# Apscheduler
+# import atexit
+# from apscheduler.schedulers.background import BackgroundScheduler
 
 from mptt.models import MPTTModel, TreeForeignKey
-from commerce import settings
 
-from main.tasks import sending_html_mail_task
+# from main.tasks import sending_html_mail_task
 
 
 class Product(models.Model):
@@ -138,54 +137,15 @@ def set_slug(sender, instance, *args, **kwargs):
     instance.slug = slugify(instance.title)
 
 
-@receiver(user_signed_up)
-def user_signed_up_(sender, request, user, **kwargs):
-    subject, from_email, to_list = f"Пользователь {user}", 'paveldudkov003@gmail.com', [user.email]
-    text_content = 'Благодарим Вас за интерес к нашему сайту!'
-    html_content = '<p>Благодарим Вас за интерес к нашему сайту!</p>'
-    sending_html_mail_task.delay(subject, text_content, html_content, from_email, to_list)
 
 
-@receiver(post_save, sender=Product)
-def send_new_product(sender, instance, created, **kwargs):
-    if created:
-        emails = [e.user.email for e in Subsciber.objects.all()]
-        subject = f"Новый товар: {instance.title}"
-        text_content = f"Появился новый товар {instance.title}. Все подробности по ссылке {instance.get_absolute_url()}"
-        html_content = f'''
-            <h1>Появился новый товар {instance.title}</h1>
-            <ul>
-                <li>Описание: {instance.description}</li>
-                <li>Цена: {instance.price}</li>
-            </ul>
-            Все подробности <a href="{instance.get_absolute_url()}">по ссылке</a>.
-        '''
-        from_email = settings.EMAIL_HOST_USER
-        sending_html_mail_task.delay(subject, text_content, html_content, from_email, emails)
+# Apscheduler
+# sched = BackgroundScheduler()
+# sched.add_job(
+#     sending_new_products, 'cron',
+#     day_of_week='sun', hour=14, minute=00,
+#     timezone='Europe/Moscow', start_date='2021-04-11'
+# )
+# sched.start()
+# atexit.register(lambda: sched.shutdown())
 
-
-def sending_new_products():
-    print('Сработало задание')
-    emails = [e.user.email for e in Subsciber.objects.all()]
-    products = Product.objects.order_by('-id')[:5]
-    subject = f"Новый товары за неделю!"
-    text_content = ""
-    html_content = ""
-    for product in products:
-        text_content += f"{product.title}, "
-        html_content += f"""<p>{product.title}</p><br>"""
-    from_email = settings.EMAIL_HOST_USER
-    sending_html_mail_task.delay(subject, text_content, html_content, from_email, emails)
-
-
-sched = BackgroundScheduler()
-
-sched.add_job(
-    sending_new_products, 'cron',
-    day_of_week='sun', hour=14, minute=00,
-    timezone='Europe/Moscow', start_date='2021-04-11'
-)
-
-sched.start()
-
-atexit.register(lambda: sched.shutdown())
