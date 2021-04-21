@@ -131,6 +131,15 @@ class Subsciber(models.Model):
         return self.user.username
 
 
+class SMSLog(models.Model):
+    """Сгенерированные кода по смс"""
+    code = models.IntegerField()
+    response_server = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.code
+
+
 @receiver(pre_save, sender=Product)
 def set_slug(sender, instance, *args, **kwargs):
     """Автозаполняет slug"""

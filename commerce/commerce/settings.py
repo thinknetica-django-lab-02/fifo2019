@@ -219,4 +219,12 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'main.tasks.sending_new_products',
         'schedule': crontab(hour=21, minute=56, day_of_week=2),
     },
+    'sending_sms_twilio': {
+        'task': 'main.tasks.send_sms_code_twilio',
+        'schedule': crontab(hour=17, minute=16, day_of_week=3),
+    },
 }
+
+
+TWILIO_ACCOUNT_SID = 'AC5d617b53d6ff8e3d0a6c7fd8b184a63b'
+TWILIO_AUTH_TOKEN = 'a28906a17f9690ec212106056c59b7d2'
