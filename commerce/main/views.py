@@ -7,6 +7,9 @@ from django.urls import reverse, reverse_lazy
 from main.forms import *
 from main.models import *
 
+from django.db.models import F
+from django.core.cache import cache
+
 
 class Home(TemplateView):
     """Главная страница"""
@@ -76,7 +79,12 @@ class ProductDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['product']
+        context['views'] = cache.get_or_set(f"view-{self.object.pk}", f"{self.object.views}", 60)
         return context
+
+    def get(self, request, *args, **kwargs):
+        Product.objects.filter(slug=self.kwargs['product_slug']).update(views=F('views') + 1)
+        return super().get(request, *args, **kwargs)
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
