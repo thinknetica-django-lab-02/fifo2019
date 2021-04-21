@@ -228,3 +228,13 @@ CELERY_BEAT_SCHEDULE = {
 
 TWILIO_ACCOUNT_SID = 'AC5d617b53d6ff8e3d0a6c7fd8b184a63b'
 TWILIO_AUTH_TOKEN = 'a28906a17f9690ec212106056c59b7d2'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
