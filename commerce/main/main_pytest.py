@@ -13,4 +13,3 @@ def test_home_view(client):
 def test_product_list_view(client):
     response = client.get(reverse('products'))
     assert response.status_code == 200
-

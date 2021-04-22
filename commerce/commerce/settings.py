@@ -98,16 +98,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttribut'
+                'eSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLe'
+                'ngthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.Co'
+                'mmonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPass'
+                'wordValidator',
     },
 ]
 
@@ -138,10 +142,11 @@ MEDIA_URL = '/media/'
 SITE_ID = 1
 
 ####################################
-##  CKEDITOR CONFIGURATION ##
+# CKEDITOR CONFIGURATION #
 ####################################
 
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/' \
+                      'jquery.min.js'
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
@@ -150,16 +155,21 @@ CKEDITOR_CONFIGS = {
         "removePlugins": "stylesheetparser",
         'allowedContent': True,
         'toolbar_Full': [
-            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-',
+            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike',
+             'Subscript', 'Superscript', '-',
              'RemoveFormat'],
             ['Image', 'Flash', 'Table', 'HorizontalRule'],
             ['TextColor', 'BGColor'],
             ['Smiley', 'sourcearea', 'SpecialChar'],
             ['Link', 'Unlink', 'Anchor'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'],
-            ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'],
-            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+             'Blockquote', 'CreateDiv', '-',
+             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+             '-', 'BidiLtr', 'BidiRtl', 'Language'],
+            ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-',
+             'Templates'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo',
+             'Redo'],
             ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'],
             ['Maximize', 'ShowBlocks']
         ],
@@ -178,12 +188,12 @@ AUTHENTICATION_BACKENDS = [
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '417061123093-34s3jofufub6k00fv3uv2nte2b7fmf5j.apps.googleusercontent.com',
+            'client_id': '417061123093-34s3jofufub6k00fv3uv2nte2b7fmf5j.ap'
+                         'ps.googleusercontent.com',
             'secret': 'EjiMzCPv2ofkKV6iUiQcOMPw'
         }
     }
 }
-
 
 # Sign IN settings
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -197,7 +207,6 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
-
 LOGIN_REDIRECT_URL = 'home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -206,7 +215,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'paveldudkov003@gmail.com'
 EMAIL_HOST_PASSWORD = 'oiomkdzelqykjfrr'
-
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
@@ -226,7 +234,6 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=17, minute=16, day_of_week=3),
     },
 }
-
 
 TWILIO_ACCOUNT_SID = 'AC5d617b53d6ff8e3d0a6c7fd8b184a63b'
 TWILIO_AUTH_TOKEN = 'a28906a17f9690ec212106056c59b7d2'

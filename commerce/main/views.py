@@ -1,11 +1,13 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, \
+    UpdateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
-from main.forms import *
-from main.models import *
+from main.forms import UserForm, ProfileFormSet, ProductForm
+from main.models import Product, Subsciber, Tag
 
 from django.db.models import F
 from django.core.cache import cache
@@ -34,7 +36,8 @@ class ProductList(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Продукты'
         context['active_tag'] = 'all_goods'
-        context['subsciber'] = Subsciber.objects.filter(user__pk=self.request.user.pk).first()
+        context['subsciber'] = Subsciber.objects.filter(
+            user__pk=self.request.user.pk).first()
         context['tags'] = Tag.objects.all()
 
         if self.request.GET.get('tag'):
@@ -60,7 +63,8 @@ class ProductList(ListView):
             if mailing == 'subscibe':
                 Subsciber.objects.create(user=request.user)
             elif mailing == 'unsubscribe':
-                subsciber = Subsciber.objects.filter(user_id=request.user.pk).first()
+                subsciber = Subsciber.objects.filter(
+                    user_id=request.user.pk).first()
                 if subsciber:
                     subsciber.delete()
 
@@ -79,11 +83,13 @@ class ProductDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['product']
-        context['views'] = cache.get_or_set(f"view-{self.object.pk}", f"{self.object.views}", 60)
+        context['views'] = cache.get_or_set(f"view-{self.object.pk}",
+                                            f"{self.object.views}", 60)
         return context
 
     def get(self, request, *args, **kwargs):
-        Product.objects.filter(slug=self.kwargs['product_slug']).update(views=F('views') + 1)
+        Product.objects.filter(slug=self.kwargs['product_slug']).update(
+            views=F('views') + 1)
         return super().get(request, *args, **kwargs)
 
 
@@ -103,7 +109,8 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
         """Добавление в контекст дополнительной формы"""
         context = super().get_context_data(**kwargs)
         context['title'] = "Редактирование профиля"
-        context['profile_form'] = ProfileFormSet(instance=self.get_object(kwargs['request']))
+        context['profile_form'] = ProfileFormSet(
+            instance=self.get_object(kwargs['request']))
         return context
 
     def get(self, request, *args, **kwargs):
@@ -125,11 +132,13 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
 
     def post(self, request, *args, **kwargs):
         """Метод обрабатывающий POST запрос.
-        Здесь происходит валидация основной формы и создание инстанса формы данным POST запроса
+        Здесь происходит валидация основной формы и создание инстанса формы
+        данным POST запроса
         """
         self.object = self.get_object(request)
         form = self.get_form()
-        profile_form = ProfileFormSet(self.request.POST, self.request.FILES, instance=self.object)
+        profile_form = ProfileFormSet(self.request.POST, self.request.FILES,
+                                      instance=self.object)
         if form.is_valid():
             return self.form_valid_formset(form, profile_form)
         else:
@@ -167,7 +176,6 @@ class EditProduct(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         instance = form.save()
-        self.success_url = reverse('product', kwargs={'product_slug': instance.slug})
+        self.success_url = reverse('product',
+                                   kwargs={'product_slug': instance.slug})
         return super(EditProduct, self).form_valid(form)
-
-

@@ -2,14 +2,16 @@ from django import forms
 from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
 
-
-from main.models import Profile, Product, Category
+from main.models import Profile, Product
 
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('title', 'seller', 'short_desc', 'description', 'image', 'price', 'quantity', 'discount', 'category', 'tags')
+        fields = (
+            'title', 'seller', 'short_desc', 'description', 'image', 'price',
+            'quantity', 'discount', 'category', 'tags'
+        )
         widgets = {
             'seller': forms.HiddenInput()
         }
@@ -33,9 +35,12 @@ class ProfileForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(label='Фамилие', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(label='Имя', widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+    last_name = forms.CharField(label='Фамилие', widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(
+        attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
