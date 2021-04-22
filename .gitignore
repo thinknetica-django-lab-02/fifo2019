@@ -161,3 +161,4 @@ migrations/
 /commerce/celerybeat.pid
 /commerce/celerybeat-schedule.dat
 /commerce/celerybeat-schedule.dir
+/commerce/docs/_build/linkcheck/
