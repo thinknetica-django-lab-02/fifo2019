@@ -70,7 +70,7 @@ def send_new_product(sender, instance, created, **kwargs):
 
 
 @app.task
-def send_sms_code_twilio():
+def send_sms_code_twilio(user_number):
     account_sid = settings.TWILIO_ACCOUNT_SID
     auth_token = settings.TWILIO_AUTH_TOKEN
 
@@ -81,7 +81,7 @@ def send_sms_code_twilio():
     message = client.messages.create(
         body=user_code,
         from_='+14152344670',
-        to='+79370230700'
+        to=user_number
     )
 
     SMSLog.objects.create(

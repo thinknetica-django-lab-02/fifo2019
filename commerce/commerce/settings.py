@@ -214,6 +214,8 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_STORE_ERRORS_EVEN_IF_IGNORED = True
 CELERY_TASK_ALWAYS_EAGER = True
+
+user_number = '+79370230700'
 CELERY_BEAT_SCHEDULE = {
     'sending_new_products_in_mail': {
         'task': 'main.tasks.sending_new_products',
@@ -221,10 +223,12 @@ CELERY_BEAT_SCHEDULE = {
     },
     'sending_sms_twilio': {
         'task': 'main.tasks.send_sms_code_twilio',
-        'schedule': crontab(hour=17, minute=16, day_of_week=3),
+        'schedule': crontab(hour=13, minute=18, day_of_week=4),
+        'args': (user_number,)
     },
 }
 
 
 TWILIO_ACCOUNT_SID = 'AC5d617b53d6ff8e3d0a6c7fd8b184a63b'
-TWILIO_AUTH_TOKEN = 'a28906a17f9690ec212106056c59b7d2'
+# TWILIO_AUTH_TOKEN = 'a28906a17f9690ec212106056c59b7d2'
+TWILIO_AUTH_TOKEN = 'db519a3c591bb0ccbcc89ab9e5b60cd5'
