@@ -26,7 +26,7 @@ SECRET_KEY = 'k(38!v%&$f@!xll0lm!-x!@v#)3jhkavyigoz!dvk$mk3c^+x-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'debug_toolbar',
+    'channels',
     'main.apps.MainConfig',
 ]
 
@@ -251,3 +252,16 @@ CACHES = {
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+# Конфигурация Channels
+CHANNEL_REDIS_HOST = 'redis://127.0.0.1:6379/2'
+ASGI_APPLICATION = "commerce.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [CHANNEL_REDIS_HOST],
+            "symmetric_encryption_keys": [SECRET_KEY],
+        },
+    },
+}

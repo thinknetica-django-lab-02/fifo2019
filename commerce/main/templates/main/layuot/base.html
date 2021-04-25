@@ -28,8 +28,21 @@
 
     </main>
 
+    <footer>
+
+        <div class="js-chat-block" style="display: none;">
+            <span class="js-close-chat">X</span>
+            <textarea id="chat-log" cols="100" rows="20" style="padding: 10px; resize:none;" disabled></textarea>
+            <textarea id="chat-message-input" cols="10" rows="10" style="padding: 10px; resize:none;"></textarea><br>
+            <input id="chat-message-submit" class="btn btn-warning" type="button" value="Отправить">
+        </div>
+        <div class="btn-warning js-chat-open">Узнать наличие товара</div>
+
+    </footer>
+
     {% block js %}
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
     {% endblock js %}
 </body>
 </html>
