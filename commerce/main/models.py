@@ -90,7 +90,7 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'
         ordering = ['title']
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Стоковое представлени
 
         :return: Возвращает название товара
@@ -98,7 +98,7 @@ class Product(models.Model):
         """
         return self.title
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         """Получает абсолютный путь
 
         :return: Возвращает url товара до представления
@@ -118,8 +118,8 @@ class Gallery(models.Model):
         verbose_name_plural = 'Изображений'
         ordering = ['id']
 
-    def __str__(self):
-        return self.image
+    def __str__(self) -> str:
+        return self.image.url
 
 
 class Tag(models.Model):
@@ -130,7 +130,7 @@ class Tag(models.Model):
         verbose_name_plural = 'Теги'
         ordering = ['title']
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
 
@@ -153,10 +153,10 @@ class Category(MPTTModel):
         verbose_name_plural = 'Категории'
         ordering = ['title']
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse('category', kwargs={'category_slug': self.slug})
 
 
@@ -171,7 +171,7 @@ class Seller(models.Model):
         verbose_name_plural = 'Продавцы'
         ordering = ['id']
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.user.username
 
 
@@ -189,11 +189,11 @@ class Profile(models.Model):
         verbose_name_plural = 'Профили пользователей'
         ordering = ['id']
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Профиль: {self.user.username}"
 
     @receiver(post_save, sender=User)
-    def user_profile(sender, instance, created, **kwargs):
+    def user_profile(sender, instance, created, **kwargs) -> None:
         if created:
             Profile.objects.create(user=instance)
             instance.groups.add(
@@ -207,7 +207,7 @@ class Subsciber(models.Model):
                                 related_name="subsciber",
                                 verbose_name="Пользователь")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.user.username
 
 
@@ -216,7 +216,7 @@ class SMSLog(models.Model):
     code = models.IntegerField()
     response_server = models.CharField(max_length=200)
 
-    def __str__(self):
+    def __str__(self) -> int:
         return self.code
 
 

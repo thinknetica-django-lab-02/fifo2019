@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.db.models.base import Model
+from django.forms.forms import Form
+from django.http import HttpResponseRedirect, HttpResponse
+from django.http.request import HttpRequest
 from django.views.generic import TemplateView, ListView, DetailView, \
     UpdateView
 from django.views.generic.edit import CreateView
@@ -12,13 +15,18 @@ from main.models import Product, Subsciber, Tag
 from django.db.models import F
 from django.core.cache import cache
 
+from django.db.models.query import QuerySet
+
 
 class Home(TemplateView):
     """Главная страница"""
-    template_name = "main/index.html"
+    template_name: str = "main/index.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(
+        self,
+        **kwargs: dict
+    ) -> dict:
+        context: dict = super().get_context_data(**kwargs)
         context['title'] = "Главная"
         context['turn_on_block'] = True
         return context
@@ -27,39 +35,48 @@ class Home(TemplateView):
 class ProductList(ListView):
     """Список товаров"""
 
-    model = Product
-    template_name = 'main/products.html'
-    context_object_name = 'products'
-    paginate_by = 9
+    model: Model = Product
+    template_name: str = 'main/products.html'
+    context_object_name: str = 'products'
+    paginate_by: int = 9
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(
+        self,
+        **kwargs: dict
+    ) -> dict:
+        context: dict = super().get_context_data(**kwargs)
         context['title'] = 'Продукты'
         context['active_tag'] = 'all_goods'
         context['subsciber'] = Subsciber.objects.filter(
-            user__pk=self.request.user.pk).first()
+                                   user__pk=self.request.user.pk
+                               ).first()
         context['tags'] = Tag.objects.all()
 
         if self.request.GET.get('tag'):
-            tag_name = self.request.GET.get('tag')
+            tag_name: str = self.request.GET.get('tag')
             context['active_tag'] = tag_name
 
         return context
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
+    def get_queryset(self) -> QuerySet:
+        queryset: QuerySet = super().get_queryset()
 
         if self.request.GET.get('tag'):
-            tag_name = self.request.GET.get('tag')
+            tag_name: str = self.request.GET.get('tag')
 
             if tag_name != 'all_goods':
                 return queryset.filter(tags__title=tag_name)
 
         return queryset
 
-    def post(self, request, *args, **kwargs):
+    def post(
+        self,
+        request: HttpRequest,
+        *args: tuple,
+        **kwargs: dict
+    ) -> HttpResponseRedirect:
         if request.POST.get('mailing'):
-            mailing = request.POST.get('mailing')
+            mailing: str = request.POST.get('mailing')
             if mailing == 'subscibe':
                 Subsciber.objects.create(user=request.user)
             elif mailing == 'unsubscribe':
@@ -74,31 +91,39 @@ class ProductList(ListView):
 class ProductDetail(DetailView):
     """Карточка товара"""
 
-    model = Product
-    template_name = 'main/product.html'
-    slug_url_kwarg = 'product_slug'
-    context_object_name = 'product'
-    success_url = 'success_url'
+    model: Model = Product
+    template_name: str = 'main/product.html'
+    slug_url_kwarg: str = 'product_slug'
+    context_object_name: str = 'product'
+    success_url: str = 'success_url'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(
+        self,
+        **kwargs: dict
+    ) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = context['product']
         context['views'] = cache.get_or_set(f"view-{self.object.pk}",
                                             f"{self.object.views}", 60)
         return context
 
-    def get(self, request, *args, **kwargs):
-        Product.objects.filter(slug=self.kwargs['product_slug']).update(
-            views=F('views') + 1)
+    def get(
+        self,
+        request: HttpRequest,
+        *args: tuple,
+        **kwargs: dict
+    ) -> HttpResponse:
+        Product.objects.filter(slug=self.kwargs['product_slug'])\
+                       .update(views=F('views') + 1)
         return super().get(request, *args, **kwargs)
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     """Редактирование профиля пользователя"""
-    model = User
-    form_class = UserForm
-    template_name = 'main/auth/profile-update.html'
-    success_url = '/accounts/profile/'
+    model: Model = User
+    form_class: Form = UserForm
+    template_name: str = 'main/auth/profile-update.html'
+    success_url: str = '/accounts/profile/'
     login_url = reverse_lazy('account_login')
 
     def get_object(self, request):
