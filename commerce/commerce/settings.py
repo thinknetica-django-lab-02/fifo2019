@@ -26,7 +26,7 @@ SECRET_KEY = 'k(38!v%&$f@!xll0lm!-x!@v#)3jhkavyigoz!dvk$mk3c^+x-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'debug_toolbar',
     'main.apps.MainConfig',
 ]
 
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'commerce.urls'
@@ -241,3 +243,7 @@ CACHES = {
         }
     }
 }
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
