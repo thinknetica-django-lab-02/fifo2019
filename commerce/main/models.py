@@ -29,6 +29,7 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество на складе')
     discount = models.IntegerField(default=0, verbose_name='Скидка')
     is_active = models.BooleanField(default=True, verbose_name='Товар активен')
+    views = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Товар'
