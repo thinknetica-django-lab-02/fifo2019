@@ -9,3 +9,5 @@ register = template.Library()
 def get_date_server():
     date = datetime.now()
     return f"{date.hour}:{date.minute}:{date.second}"
+
+
