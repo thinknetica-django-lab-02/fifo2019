@@ -16,17 +16,28 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Product(models.Model):
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name="products", verbose_name="Категория")
-    seller = models.ForeignKey('Seller', on_delete=models.SET_NULL,
-                               null=True, blank=True, related_name="products", verbose_name="Продавец")
+    category = models.ForeignKey(
+        'Category', on_delete=models.CASCADE,
+        related_name="products",
+        verbose_name="Категория"
+    )
+    seller = models.ForeignKey(
+        'Seller', on_delete=models.SET_NULL,
+        null=True, blank=True, related_name="products",
+        verbose_name="Продавец"
+    )
     tags = models.ManyToManyField('Tag', blank=True, verbose_name='Теги')
     title = models.CharField(max_length=255, verbose_name='Наименование')
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Slug")
-    image = models.ImageField(upload_to='products/', blank=True, null=True, verbose_name="Изображение")
-    short_desc = models.CharField(max_length=60, blank=True, verbose_name='Краткое описание товара')
+    image = models.ImageField(upload_to='products/', blank=True, null=True,
+                              verbose_name="Изображение")
+    short_desc = models.CharField(max_length=60, blank=True,
+                                  verbose_name='Краткое описание товара')
     description = models.TextField(blank=True, verbose_name='Описание товара')
-    price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='Цена товара')
-    quantity = models.PositiveIntegerField(default=0, verbose_name='Количество на складе')
+    price = models.DecimalField(max_digits=8, decimal_places=2, default=0,
+                                verbose_name='Цена товара')
+    quantity = models.PositiveIntegerField(default=0,
+                                           verbose_name='Количество на складе')
     discount = models.IntegerField(default=0, verbose_name='Скидка')
     is_active = models.BooleanField(default=True, verbose_name='Товар активен')
     views = models.IntegerField(default=0)
@@ -44,8 +55,10 @@ class Product(models.Model):
 
 
 class Gallery(models.Model):
-    image = models.ImageField(upload_to='products/', verbose_name="Изображение")
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="gallery", verbose_name="Товар")
+    image = models.ImageField(upload_to='products/',
+                              verbose_name="Изображение")
+    product = models.ForeignKey('Product', on_delete=models.CASCADE,
+                                related_name="gallery", verbose_name="Товар")
 
     class Meta:
         verbose_name = 'Изображение'
@@ -69,10 +82,14 @@ class Tag(models.Model):
 
 
 class Category(MPTTModel):
-    title = models.CharField(max_length=100, unique=True, verbose_name="Категория")
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    description = models.TextField(blank=True, verbose_name='Описание категории')
-    is_active = models.BooleanField(default=True, verbose_name='Категория активна')
+    title = models.CharField(max_length=100, unique=True,
+                             verbose_name="Категория")
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True,
+                            blank=True, related_name='children')
+    description = models.TextField(blank=True,
+                                   verbose_name='Описание категории')
+    is_active = models.BooleanField(default=True,
+                                    verbose_name='Категория активна')
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL")
 
     class MPTTMeta:
@@ -91,8 +108,10 @@ class Category(MPTTModel):
 
 
 class Seller(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Продавец")
-    avatar = models.ImageField(upload_to='seller/', null=True, blank=True, verbose_name="Аватарка")
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                verbose_name="Продавец")
+    avatar = models.ImageField(upload_to='seller/', null=True, blank=True,
+                               verbose_name="Аватарка")
 
     class Meta:
         verbose_name = 'Продавец'
@@ -104,12 +123,16 @@ class Seller(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", verbose_name="Пользователь")
-    date_of_birth = models.DateField(validators=[validator_age], blank=True, null=True, verbose_name="Дата рождения")
-    avatar = models.ImageField(upload_to='profile/', null=True, blank=True, verbose_name="Аватарка")
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name="profile",
+                                verbose_name="Пользователь")
+    date_of_birth = models.DateField(validators=[validator_age], blank=True,
+                                     null=True, verbose_name="Дата рождения")
+    avatar = models.ImageField(upload_to='profile/', null=True, blank=True,
+                               verbose_name="Аватарка")
 
     class Meta:
-        verbose_name = f'Профиль пользователя'
+        verbose_name = 'Профиль пользователя'
         verbose_name_plural = 'Профили пользователей'
         ordering = ['id']
 
@@ -120,13 +143,16 @@ class Profile(models.Model):
     def user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
-            instance.groups.add(Group.objects.get_or_create(name='common users')[0])
+            instance.groups.add(
+                Group.objects.get_or_create(name='common users')[0])
         instance.profile.save()
 
 
 class Subsciber(models.Model):
     """Подписка на рассылку"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="subsciber", verbose_name="Пользователь")
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name="subsciber",
+                                verbose_name="Пользователь")
 
     def __str__(self):
         return self.user.username
@@ -146,9 +172,6 @@ def set_slug(sender, instance, *args, **kwargs):
     """Автозаполняет slug"""
     instance.slug = slugify(instance.title)
 
-
-
-
 # Apscheduler
 # sched = BackgroundScheduler()
 # sched.add_job(
@@ -158,4 +181,3 @@ def set_slug(sender, instance, *args, **kwargs):
 # )
 # sched.start()
 # atexit.register(lambda: sched.shutdown())
-

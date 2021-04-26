@@ -1,10 +1,11 @@
-from main.models import *
+from main.models import Category, Tag, Product
 
 #  with create()
 
 electronics = Category.objects.create(title='Электроника', slug='electronics')
 
-laptops = Category.objects.create(title='Ноутбуки', parent=electronics, slug='laptops')
+laptops = Category.objects.create(title='Ноутбуки', parent=electronics,
+                                  slug='laptops')
 
 lenove_tag = Tag.objects.create(title='Lenovo')
 
@@ -19,7 +20,9 @@ Product.objects.create(
 Product.objects.create(
     category=laptops,
     title='14" Ноутбук Lenovo ThinkBook 14 G2 ARE (20VF0035RU)',
-    short_desc='14" Ноутбук Lenovo ThinkBook 14 G2 ARE (20VF0035RU), AMD Ryzen 3 4300U (2.7 ГГц), RAM 8 ГБ, SSD 256 ГБ, AMD Radeon Graphics, Без системы, (20VF0035RU), серый',
+    short_desc='14" Ноутбук Lenovo ThinkBook 14 G2 ARE (20VF0035RU), '
+               'AMD Ryzen 3 4300U (2.7 ГГц), RAM 8 ГБ, SSD 256 ГБ, AMD Radeon'
+               ' Graphics, Без системы, (20VF0035RU), серый',
     slug='14-laptops-lenovo',
     price=39590,
     quantity=3
@@ -28,7 +31,9 @@ Product.objects.create(
 Product.objects.create(
     category=laptops,
     title='17.3" Ноутбук Lenovo IdeaPad 3 17ADA05',
-    short_desc='17.3" Ноутбук Lenovo IdeaPad 3 17ADA05, AMD Ryzen 3 3250U (2.6 ГГц), RAM 8 ГБ, SSD, AMD Radeon Graphics, Без системы, (81W2003XRK), голубой',
+    short_desc='17.3" Ноутбук Lenovo IdeaPad 3 17ADA05, AMD Ryzen 3 3250U '
+               '(2.6 ГГц), RAM 8 ГБ, SSD, AMD Radeon Graphics, Без системы, '
+               '(81W2003XRK), голубой',
     slug='17-laptops-lenovo',
     price=52340,
     quantity=3
@@ -44,7 +49,8 @@ Product.objects.create(
     quantity=5
 ).tags.add(acer_tag)
 
-television = Category.objects.create(title='Телевизоры', parent=electronics, slug='television')
+television = Category.objects.create(title='Телевизоры', parent=electronics,
+                                     slug='television')
 
 thomson_tag = Tag.objects.create(title='Thomson')
 
@@ -66,13 +72,14 @@ Product.objects.create(
     quantity=2
 ).tags.add(samsung_tag)
 
-
 #  with save()
 
 appliances = Category(title='Бытовая техника', slug='appliances')
 appliances.save()
 
-refrigerators = Category.objects.create(title='Холодильники', parent=appliances, slug='refrigerators')
+refrigerators = Category.objects.create(title='Холодильники',
+                                        parent=appliances,
+                                        slug='refrigerators')
 refrigerators.save()
 
 indesit_tag = Tag(title='Indesit')

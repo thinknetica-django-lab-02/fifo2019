@@ -13,4 +13,3 @@ def validator_age(date_of_birth):
         raise ValidationError('Возраст меньше 18 лет!')
 
     return date_of_birth
-
