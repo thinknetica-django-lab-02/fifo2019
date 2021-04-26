@@ -16,6 +16,40 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Product(models.Model):
+    """
+    Модель товара.
+
+    :param category: Для хранение внешнего ключа связанной модели Category
+    :type category: int
+    :param seller: Для хранение внешнего ключа связанной модели Seller
+    :type seller: int
+    :param tags: Для хранение внешнего ключа связанной модели Tag
+    :type tags: int
+    :param title: Именование товара, максимальная длина 255 символов,
+                  не может быть пустым
+    :type title: str
+    :param slug: URL-путь для представления, максимальная длина 255 символов,
+                 не может быть пустым
+    :type slug: str
+    :param image: URL-путь до изображения, может быть пустым
+    :type image: str
+    :param short_desc: Краткое описание товара, максимальная длина 60 символов,
+                       может быть пустым
+    :type short_desc: str
+    :param description: Описание товара, может быть пустым
+    :type description: str
+    :param price: Цена товара, два символа поле запятой, по умолчанию 0
+    :type price: float
+    :param quantity: Количество товара на складе, по умолчанию 0
+    :type quantity: int
+    :param discount: Скидка на товар, по умолчанию 0
+    :type discount: int
+    :param is_active: Активен товар или нет
+    :type is_active: bool
+    :param views: Количество просмотров на странци товара, по умолчанию 0
+    :type views: int
+    """
+
     category = models.ForeignKey(
         'Category', on_delete=models.CASCADE,
         related_name="products",
@@ -43,14 +77,33 @@ class Product(models.Model):
     views = models.IntegerField(default=0)
 
     class Meta:
+        """Настройки для админ панели
+
+        :param verbose_name: Название товара в ед. числе
+        :type verbose_name: str
+        :param verbose_name_plural: Название товара в мн. числе
+        :type verbose_name: str
+        :param ordering: Сортировка
+        :type ordering: list
+        """
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ['title']
 
     def __str__(self):
+        """Стоковое представлени
+
+        :return: Возвращает название товара
+        :rtype: str
+        """
         return self.title
 
     def get_absolute_url(self):
+        """Получает абсолютный путь
+
+        :return: Возвращает url товара до представления
+        :rtype: str
+        """
         return reverse('product', kwargs={'product_slug': self.slug})
 
 

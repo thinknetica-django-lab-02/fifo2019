@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Модели приложения &#8212; документация E-commerce 1.0</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="prev" title="Welcome to E-commerce’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>Модели приложения<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="product">
+<h2><code class="docutils literal notranslate"><span class="pre">Product</span></code><a class="headerlink" href="#product" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.Product">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">Product</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Product" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель товара.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>category</strong> (<em>int</em>) – Для хранение внешнего ключа связанной модели Category</p></li>
+<li><p><strong>seller</strong> (<em>int</em>) – Для хранение внешнего ключа связанной модели Seller</p></li>
+<li><p><strong>tags</strong> (<em>int</em>) – Для хранение внешнего ключа связанной модели Tag</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Именование товара, максимальная длина 255 символов,
+не может быть пустым</p></li>
+<li><p><strong>slug</strong> (<em>str</em>) – URL-путь для представления, максимальная длина 255 символов,
+не может быть пустым</p></li>
+<li><p><strong>image</strong> (<em>str</em>) – URL-путь до изображения, может быть пустым</p></li>
+<li><p><strong>short_desc</strong> (<em>str</em>) – Краткое описание товара, максимальная длина 60 символов,
+может быть пустым</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – Описание товара, может быть пустым</p></li>
+<li><p><strong>price</strong> (<em>float</em>) – Цена товара, два символа поле запятой, по умолчанию 0</p></li>
+<li><p><strong>quantity</strong> (<em>int</em>) – Количество товара на складе, по умолчанию 0</p></li>
+<li><p><strong>discount</strong> (<em>int</em>) – Скидка на товар, по умолчанию 0</p></li>
+<li><p><strong>is_active</strong> (<em>bool</em>) – Активен товар или нет</p></li>
+<li><p><strong>views</strong> (<em>int</em>) – Количество просмотров на странци товара, по умолчанию 0</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt id="main.models.Product.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.Product.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.Product.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.Product.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="main.models.Product.get_absolute_url">
+<code class="sig-name descname"><span class="pre">get_absolute_url</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Product.get_absolute_url" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получает абсолютный путь</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>Возвращает url товара до представления</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="gallery">
+<h2><code class="docutils literal notranslate"><span class="pre">Gallery</span></code><a class="headerlink" href="#gallery" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.Gallery">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">Gallery</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Gallery" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+</div></blockquote>
+<dl class="py exception">
+<dt id="main.models.Gallery.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.Gallery.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.Gallery.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.Gallery.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Gallery.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#main.models.Gallery.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Gallery.image">
+<code class="sig-name descname"><span class="pre">image</span></code><a class="headerlink" href="#main.models.Gallery.image" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Gallery.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#main.models.Gallery.objects" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Gallery.product">
+<code class="sig-name descname"><span class="pre">product</span></code><a class="headerlink" href="#main.models.Gallery.product" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Gallery.product_id">
+<code class="sig-name descname"><span class="pre">product_id</span></code><a class="headerlink" href="#main.models.Gallery.product_id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="tag">
+<h2><code class="docutils literal notranslate"><span class="pre">Tag</span></code><a class="headerlink" href="#tag" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.Tag">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">Tag</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Tag" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+</div></blockquote>
+<dl class="py exception">
+<dt id="main.models.Tag.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.Tag.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.Tag.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.Tag.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Tag.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#main.models.Tag.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Tag.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#main.models.Tag.objects" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Tag.product_set">
+<code class="sig-name descname"><span class="pre">product_set</span></code><a class="headerlink" href="#main.models.Tag.product_set" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Tag.title">
+<code class="sig-name descname"><span class="pre">title</span></code><a class="headerlink" href="#main.models.Tag.title" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="category">
+<h2><code class="docutils literal notranslate"><span class="pre">Category</span></code><a class="headerlink" href="#category" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.Category">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">Category</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slug</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Category" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">mptt.models.MPTTModel</span></code></p>
+</div></blockquote>
+<dl class="py exception">
+<dt id="main.models.Category.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.Category.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.Category.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.Category.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.children">
+<code class="sig-name descname"><span class="pre">children</span></code><a class="headerlink" href="#main.models.Category.children" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.description">
+<code class="sig-name descname"><span class="pre">description</span></code><a class="headerlink" href="#main.models.Category.description" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="main.models.Category.get_absolute_url">
+<code class="sig-name descname"><span class="pre">get_absolute_url</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Category.get_absolute_url" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#main.models.Category.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.is_active">
+<code class="sig-name descname"><span class="pre">is_active</span></code><a class="headerlink" href="#main.models.Category.is_active" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.level">
+<code class="sig-name descname"><span class="pre">level</span></code><a class="headerlink" href="#main.models.Category.level" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.lft">
+<code class="sig-name descname"><span class="pre">lft</span></code><a class="headerlink" href="#main.models.Category.lft" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.parent">
+<code class="sig-name descname"><span class="pre">parent</span></code><a class="headerlink" href="#main.models.Category.parent" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.parent_id">
+<code class="sig-name descname"><span class="pre">parent_id</span></code><a class="headerlink" href="#main.models.Category.parent_id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.products">
+<code class="sig-name descname"><span class="pre">products</span></code><a class="headerlink" href="#main.models.Category.products" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.rght">
+<code class="sig-name descname"><span class="pre">rght</span></code><a class="headerlink" href="#main.models.Category.rght" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.slug">
+<code class="sig-name descname"><span class="pre">slug</span></code><a class="headerlink" href="#main.models.Category.slug" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.title">
+<code class="sig-name descname"><span class="pre">title</span></code><a class="headerlink" href="#main.models.Category.title" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Category.tree_id">
+<code class="sig-name descname"><span class="pre">tree_id</span></code><a class="headerlink" href="#main.models.Category.tree_id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="seller">
+<h2><code class="docutils literal notranslate"><span class="pre">Seller</span></code><a class="headerlink" href="#seller" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.Seller">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">Seller</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avatar</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Seller" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+</div></blockquote>
+<dl class="py exception">
+<dt id="main.models.Seller.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.Seller.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.Seller.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.Seller.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Seller.avatar">
+<code class="sig-name descname"><span class="pre">avatar</span></code><a class="headerlink" href="#main.models.Seller.avatar" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Seller.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#main.models.Seller.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Seller.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#main.models.Seller.objects" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Seller.products">
+<code class="sig-name descname"><span class="pre">products</span></code><a class="headerlink" href="#main.models.Seller.products" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Seller.user">
+<code class="sig-name descname"><span class="pre">user</span></code><a class="headerlink" href="#main.models.Seller.user" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Seller.user_id">
+<code class="sig-name descname"><span class="pre">user_id</span></code><a class="headerlink" href="#main.models.Seller.user_id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="profile">
+<h2><code class="docutils literal notranslate"><span class="pre">Profile</span></code><a class="headerlink" href="#profile" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.Profile">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">Profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_of_birth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avatar</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Profile" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+</div></blockquote>
+<dl class="py exception">
+<dt id="main.models.Profile.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.Profile.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.Profile.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.Profile.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Profile.avatar">
+<code class="sig-name descname"><span class="pre">avatar</span></code><a class="headerlink" href="#main.models.Profile.avatar" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Profile.date_of_birth">
+<code class="sig-name descname"><span class="pre">date_of_birth</span></code><a class="headerlink" href="#main.models.Profile.date_of_birth" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Profile.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#main.models.Profile.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Profile.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#main.models.Profile.objects" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Profile.user">
+<code class="sig-name descname"><span class="pre">user</span></code><a class="headerlink" href="#main.models.Profile.user" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Profile.user_id">
+<code class="sig-name descname"><span class="pre">user_id</span></code><a class="headerlink" href="#main.models.Profile.user_id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="main.models.Profile.user_profile">
+<code class="sig-name descname"><span class="pre">user_profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Profile.user_profile" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="subsciber">
+<h2><code class="docutils literal notranslate"><span class="pre">Subsciber</span></code><a class="headerlink" href="#subsciber" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.Subsciber">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">Subsciber</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.Subsciber" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+</div></blockquote>
+<p>Подписка на рассылку</p>
+<dl class="py exception">
+<dt id="main.models.Subsciber.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.Subsciber.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.Subsciber.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.Subsciber.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Subsciber.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#main.models.Subsciber.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Subsciber.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#main.models.Subsciber.objects" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Subsciber.user">
+<code class="sig-name descname"><span class="pre">user</span></code><a class="headerlink" href="#main.models.Subsciber.user" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.Subsciber.user_id">
+<code class="sig-name descname"><span class="pre">user_id</span></code><a class="headerlink" href="#main.models.Subsciber.user_id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="smslog">
+<h2><code class="docutils literal notranslate"><span class="pre">SMSLog</span></code><a class="headerlink" href="#smslog" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="main.models.SMSLog">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">main.models.</span></code><code class="sig-name descname"><span class="pre">SMSLog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.models.SMSLog" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+</div></blockquote>
+<p>Сгенерированные кода по смс</p>
+<dl class="py exception">
+<dt id="main.models.SMSLog.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#main.models.SMSLog.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="main.models.SMSLog.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#main.models.SMSLog.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd><blockquote>
+<div><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.SMSLog.code">
+<code class="sig-name descname"><span class="pre">code</span></code><a class="headerlink" href="#main.models.SMSLog.code" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.SMSLog.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#main.models.SMSLog.id" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.SMSLog.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#main.models.SMSLog.objects" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="main.models.SMSLog.response_server">
+<code class="sig-name descname"><span class="pre">response_server</span></code><a class="headerlink" href="#main.models.SMSLog.response_server" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">E-commerce</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<p class="caption"><span class="caption-text">Меню:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Модели приложения</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#product"><code class="docutils literal notranslate"><span class="pre">Product</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gallery"><code class="docutils literal notranslate"><span class="pre">Gallery</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tag"><code class="docutils literal notranslate"><span class="pre">Tag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#category"><code class="docutils literal notranslate"><span class="pre">Category</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seller"><code class="docutils literal notranslate"><span class="pre">Seller</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#profile"><code class="docutils literal notranslate"><span class="pre">Profile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subsciber"><code class="docutils literal notranslate"><span class="pre">Subsciber</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smslog"><code class="docutils literal notranslate"><span class="pre">SMSLog</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="предыдущая глава">Welcome to E-commerce’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Pavel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
