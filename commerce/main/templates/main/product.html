@@ -40,7 +40,7 @@
 
         <div class="card-body mt-5">
             {% if product.description %}
-                <p class="card-text">Описание: {{ product.description }}</p>
+                <p class="card-text">Описание: {{ product.description|safe }}</p>
             {% else %}
                 <p class="card-text">Описание: <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deserunt laboriosam, necessitatibus nostrum optio sint sit! Accusamus accusantium aspernatur commodi laudantium officiis quisquam quod veniam? Deleniti eveniet quam reiciendis voluptas?</span><span>Accusamus aliquam at atque consectetur consequuntur dolorem fuga fugit inventore iure, iusto labore minima necessitatibus neque pariatur qui quia rerum sint soluta unde vero? Eligendi expedita impedit nemo obcaecati rerum?</span><span>Ad aliquid aspernatur at blanditiis commodi cum delectus eius error esse, exercitationem id inventore ipsam itaque iure minima minus mollitia odio optio quia repellat, soluta sunt ullam unde ut voluptate.</span></p>
             {% endif %}

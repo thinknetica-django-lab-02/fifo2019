@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from main.validators import validator_age
 from pytils.translit import slugify
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Apscheduler
 # import atexit
@@ -65,9 +66,8 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Slug")
     image = models.ImageField(upload_to='products/', blank=True, null=True,
                               verbose_name="Изображение")
-    short_desc = models.CharField(max_length=60, blank=True,
-                                  verbose_name='Краткое описание товара')
-    description = models.TextField(blank=True, verbose_name='Описание товара')
+    short_desc = RichTextUploadingField()
+    description = RichTextUploadingField()
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0,
                                 verbose_name='Цена товара')
     quantity = models.PositiveIntegerField(default=0,

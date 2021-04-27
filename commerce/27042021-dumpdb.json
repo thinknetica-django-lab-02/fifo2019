@@ -1,0 +1,1271 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2021-04-27T15:18:07.510Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "/about/ -- О нас",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2021-04-27T15:18:37.659Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "/contacts/ -- Контакты",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2021-04-27T15:18:55.117Z",
+      "user": 1,
+      "content_type": 15,
+      "object_id": "1",
+      "object_repr": "Ноутбуки",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2021-04-27T15:20:09.671Z",
+      "user": 1,
+      "content_type": 17,
+      "object_id": "1",
+      "object_repr": "Acer",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2021-04-27T15:22:17.775Z",
+      "user": 1,
+      "content_type": 21,
+      "object_id": "1",
+      "object_repr": "Acer Aspire E 15 E5-553G-T2DM",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2021-04-27T15:22:40.202Z",
+      "user": 1,
+      "content_type": 17,
+      "object_id": "2",
+      "object_repr": "Apple",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2021-04-27T15:24:09.295Z",
+      "user": 1,
+      "content_type": 21,
+      "object_id": "2",
+      "object_repr": "Apple MacBook Pro 16 i7 2,6/64/8T/RP 5600M 8Gb SG",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add site",
+      "content_type": 7,
+      "codename": "add_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change site",
+      "content_type": 7,
+      "codename": "change_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete site",
+      "content_type": 7,
+      "codename": "delete_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view site",
+      "content_type": 7,
+      "codename": "view_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add flat page",
+      "content_type": 8,
+      "codename": "add_flatpage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change flat page",
+      "content_type": 8,
+      "codename": "change_flatpage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete flat page",
+      "content_type": 8,
+      "codename": "delete_flatpage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view flat page",
+      "content_type": 8,
+      "codename": "view_flatpage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add kv store",
+      "content_type": 9,
+      "codename": "add_kvstore"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change kv store",
+      "content_type": 9,
+      "codename": "change_kvstore"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete kv store",
+      "content_type": 9,
+      "codename": "delete_kvstore"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view kv store",
+      "content_type": 9,
+      "codename": "view_kvstore"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add email address",
+      "content_type": 10,
+      "codename": "add_emailaddress"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change email address",
+      "content_type": 10,
+      "codename": "change_emailaddress"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete email address",
+      "content_type": 10,
+      "codename": "delete_emailaddress"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view email address",
+      "content_type": 10,
+      "codename": "view_emailaddress"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add email confirmation",
+      "content_type": 11,
+      "codename": "add_emailconfirmation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change email confirmation",
+      "content_type": 11,
+      "codename": "change_emailconfirmation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete email confirmation",
+      "content_type": 11,
+      "codename": "delete_emailconfirmation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view email confirmation",
+      "content_type": 11,
+      "codename": "view_emailconfirmation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add social account",
+      "content_type": 12,
+      "codename": "add_socialaccount"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change social account",
+      "content_type": 12,
+      "codename": "change_socialaccount"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete social account",
+      "content_type": 12,
+      "codename": "delete_socialaccount"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view social account",
+      "content_type": 12,
+      "codename": "view_socialaccount"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add social application",
+      "content_type": 13,
+      "codename": "add_socialapp"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change social application",
+      "content_type": 13,
+      "codename": "change_socialapp"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete social application",
+      "content_type": 13,
+      "codename": "delete_socialapp"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view social application",
+      "content_type": 13,
+      "codename": "view_socialapp"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+      "name": "Can add social application token",
+      "content_type": 14,
+      "codename": "add_socialtoken"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+      "name": "Can change social application token",
+      "content_type": 14,
+      "codename": "change_socialtoken"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+      "name": "Can delete social application token",
+      "content_type": 14,
+      "codename": "delete_socialtoken"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+      "name": "Can view social application token",
+      "content_type": 14,
+      "codename": "view_socialtoken"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+      "name": "Can add Категорию",
+      "content_type": 15,
+      "codename": "add_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+      "name": "Can change Категорию",
+      "content_type": 15,
+      "codename": "change_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+      "name": "Can delete Категорию",
+      "content_type": 15,
+      "codename": "delete_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+      "name": "Can view Категорию",
+      "content_type": 15,
+      "codename": "view_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+      "name": "Can add sms log",
+      "content_type": 16,
+      "codename": "add_smslog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+      "name": "Can change sms log",
+      "content_type": 16,
+      "codename": "change_smslog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+      "name": "Can delete sms log",
+      "content_type": 16,
+      "codename": "delete_smslog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+      "name": "Can view sms log",
+      "content_type": 16,
+      "codename": "view_smslog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+      "name": "Can add Тег",
+      "content_type": 17,
+      "codename": "add_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+      "name": "Can change Тег",
+      "content_type": 17,
+      "codename": "change_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+      "name": "Can delete Тег",
+      "content_type": 17,
+      "codename": "delete_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+      "name": "Can view Тег",
+      "content_type": 17,
+      "codename": "view_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+      "name": "Can add subsciber",
+      "content_type": 18,
+      "codename": "add_subsciber"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+      "name": "Can change subsciber",
+      "content_type": 18,
+      "codename": "change_subsciber"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+      "name": "Can delete subsciber",
+      "content_type": 18,
+      "codename": "delete_subsciber"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+      "name": "Can view subsciber",
+      "content_type": 18,
+      "codename": "view_subsciber"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+      "name": "Can add Продавец",
+      "content_type": 19,
+      "codename": "add_seller"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+      "name": "Can change Продавец",
+      "content_type": 19,
+      "codename": "change_seller"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+      "name": "Can delete Продавец",
+      "content_type": 19,
+      "codename": "delete_seller"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+      "name": "Can view Продавец",
+      "content_type": 19,
+      "codename": "view_seller"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+      "name": "Can add Профиль пользователя",
+      "content_type": 20,
+      "codename": "add_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+      "name": "Can change Профиль пользователя",
+      "content_type": 20,
+      "codename": "change_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+      "name": "Can delete Профиль пользователя",
+      "content_type": 20,
+      "codename": "delete_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+      "name": "Can view Профиль пользователя",
+      "content_type": 20,
+      "codename": "view_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 81,
+    "fields": {
+      "name": "Can add Товар",
+      "content_type": 21,
+      "codename": "add_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 82,
+    "fields": {
+      "name": "Can change Товар",
+      "content_type": 21,
+      "codename": "change_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 83,
+    "fields": {
+      "name": "Can delete Товар",
+      "content_type": 21,
+      "codename": "delete_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 84,
+    "fields": {
+      "name": "Can view Товар",
+      "content_type": 21,
+      "codename": "view_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 85,
+    "fields": {
+      "name": "Can add Изображение",
+      "content_type": 22,
+      "codename": "add_gallery"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 86,
+    "fields": {
+      "name": "Can change Изображение",
+      "content_type": 22,
+      "codename": "change_gallery"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 87,
+    "fields": {
+      "name": "Can delete Изображение",
+      "content_type": 22,
+      "codename": "delete_gallery"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 88,
+    "fields": {
+      "name": "Can view Изображение",
+      "content_type": 22,
+      "codename": "view_gallery"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "common users",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$FR8TJY0r82DE$+/obqKm0zGKn8FrRKS/wobHs+PsFgXX6MKSJg0fu8KI=",
+      "last_login": "2021-04-27T15:17:18.143Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2021-04-27T15:16:43.315Z",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "auth",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "sites",
+      "model": "site"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "flatpages",
+      "model": "flatpage"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "thumbnail",
+      "model": "kvstore"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "account",
+      "model": "emailaddress"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "account",
+      "model": "emailconfirmation"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "socialaccount",
+      "model": "socialaccount"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+      "app_label": "socialaccount",
+      "model": "socialapp"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+      "app_label": "socialaccount",
+      "model": "socialtoken"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+      "app_label": "main",
+      "model": "category"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+      "app_label": "main",
+      "model": "smslog"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+      "app_label": "main",
+      "model": "tag"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+      "app_label": "main",
+      "model": "subsciber"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+      "app_label": "main",
+      "model": "seller"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+      "app_label": "main",
+      "model": "profile"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 21,
+    "fields": {
+      "app_label": "main",
+      "model": "product"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 22,
+    "fields": {
+      "app_label": "main",
+      "model": "gallery"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "ako7pypmkksgliy2c5yuav79cvbt3twx",
+    "fields": {
+      "session_data": ".eJxVjMEKwyAQRP_FcxE1GrTH3vsNsuuuNW1RiMkp9N-bQA7taWDem9lEhHUpce08x4nEVWhx-e0Q0ovrAegJ9dFkanWZJ5SHIk_a5b0Rv2-n-3dQoJd9ndhnwxgGADI5k1NmwNEFQq-QDGULzoPXOpjRuj0dDTb4rCGxUYzi8wUHLDhb:1lbPSg:AO7IfP0Wj-Z0jTf3Wj81OJltqL3o-WnzkAYPUkxmNAQ",
+      "expire_date": "2021-05-11T15:17:18.391Z"
+    }
+  },
+  {
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+      "domain": "example.com",
+      "name": "example.com"
+    }
+  },
+  {
+    "model": "flatpages.flatpage",
+    "pk": 1,
+    "fields": {
+      "url": "/about/",
+      "title": "О нас",
+      "content": "<p>Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками в отношении поставленных задач. Таким образом сложившаяся структура организации требуют определения и уточнения дальнейших направлений развития. Товарищи! сложившаяся структура организации влечет за собой процесс внедрения и модернизации существенных финансовых и административных условий.</p>\r\n\r\n<p>Таким образом консультация с широким активом влечет за собой процесс внедрения и модернизации направлений прогрессивного развития. Разнообразный и богатый опыт новая модель организационной деятельности способствует подготовки и реализации существенных финансовых и административных условий. Не следует, однако забывать, что постоянный количественный рост и сфера нашей активности позволяет оценить значение соответствующий условий активизации. Таким образом консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в формировании форм развития. Товарищи! рамки и место обучения кадров играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач.</p>\r\n\r\n<p>Равным образом консультация с широким активом играет важную роль в формировании дальнейших направлений развития. Повседневная практика показывает, что укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании направлений прогрессивного развития. Разнообразный и богатый опыт рамки и место обучения кадров играет важную роль в формировании существенных финансовых и административных условий. Разнообразный и богатый опыт консультация с широким активом играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач.</p>",
+      "enable_comments": false,
+      "template_name": "main/about.html",
+      "registration_required": false,
+      "sites": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "flatpages.flatpage",
+    "pk": 2,
+    "fields": {
+      "url": "/contacts/",
+      "title": "Контакты",
+      "content": "<p>Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками в отношении поставленных задач. Таким образом сложившаяся структура организации требуют определения и уточнения дальнейших направлений развития. Товарищи! сложившаяся структура организации влечет за собой процесс внедрения и модернизации существенных финансовых и административных условий.</p>\r\n\r\n<p>Таким образом консультация с широким активом влечет за собой процесс внедрения и модернизации направлений прогрессивного развития. Разнообразный и богатый опыт новая модель организационной деятельности способствует подготовки и реализации существенных финансовых и административных условий. Не следует, однако забывать, что постоянный количественный рост и сфера нашей активности позволяет оценить значение соответствующий условий активизации. Таким образом консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в формировании форм развития. Товарищи! рамки и место обучения кадров играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач.</p>\r\n\r\n<p>Равным образом консультация с широким активом играет важную роль в формировании дальнейших направлений развития. Повседневная практика показывает, что укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании направлений прогрессивного развития. Разнообразный и богатый опыт рамки и место обучения кадров играет важную роль в формировании существенных финансовых и административных условий. Разнообразный и богатый опыт консультация с широким активом играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач.</p>",
+      "enable_comments": false,
+      "template_name": "main/contacts.html",
+      "registration_required": false,
+      "sites": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||08560384e7bae4fbf537240ef1c763e0",
+    "fields": {
+      "value": "{\"name\": \"products/30050747b.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 600]}"
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||33e0e0c26bc67f3da4aa1ed2eaac1fd3",
+    "fields": {
+      "value": "{\"name\": \"cache/68/14/68141d7d97e70409e5996020b80efd3a.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [300, 200]}"
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||37e27bbf750a00d121c56b101bab1416",
+    "fields": {
+      "value": "{\"name\": \"cache/1b/4d/1b4dec6d61bc6d6b4fc6110f2b082b12.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [300, 200]}"
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||79af9063be2747de9735e9e854e843b8",
+    "fields": {
+      "value": "{\"name\": \"cache/eb/13/eb131d6871e7159d7554c9db2b5fd167.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 400]}"
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||aacb21f0d591b20959ea3bcf87ba4087",
+    "fields": {
+      "value": "{\"name\": \"cache/d5/19/d5195d61e6d77c555a28f41675127797.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 400]}"
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||e8a93584dabc9ecfb4419435cfc3e8b5",
+    "fields": {
+      "value": "{\"name\": \"products/30025817b.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 600]}"
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||thumbnails||08560384e7bae4fbf537240ef1c763e0",
+    "fields": {
+      "value": "[\"79af9063be2747de9735e9e854e843b8\", \"37e27bbf750a00d121c56b101bab1416\"]"
+    }
+  },
+  {
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||thumbnails||e8a93584dabc9ecfb4419435cfc3e8b5",
+    "fields": {
+      "value": "[\"33e0e0c26bc67f3da4aa1ed2eaac1fd3\", \"aacb21f0d591b20959ea3bcf87ba4087\"]"
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "seller": null,
+      "title": "Acer Aspire E 15 E5-553G-T2DM",
+      "slug": "acer-aspire-e-15-e5-553g-t2dm",
+      "image": "products/30025817b.jpg",
+      "short_desc": "<p>Производительный и компактный ноутбук Acer Aspire E 15 E5-553G-T2DM NX.GEQER.004 смело можно назвать универсальным. Его вес чуть более 2 кг обеспечит лёгкость в перемещении. Лэптоп отлично подойдёт для офисной работы или домашних развлечений. 15,6-дюймовый экран с HD-разрешением 1366x768 пикселей позволит с комфортом смотреть кино, изучать свежие новости или играть в интересные игры. С ёмким аккумулятором вам гарантирована автономность до пяти часов при активном использовании.</p>",
+      "description": "<p>Производительный и компактный ноутбук Acer Aspire E 15 E5-553G-T2DM NX.GEQER.004 смело можно назвать универсальным. Его вес чуть более 2 кг обеспечит лёгкость в перемещении. Лэптоп отлично подойдёт для офисной работы или домашних развлечений. 15,6-дюймовый экран с HD-разрешением 1366x768 пикселей позволит с комфортом смотреть кино, изучать свежие новости или играть в интересные игры. С ёмким аккумулятором вам гарантирована автономность до пяти часов при активном использовании.<br />\r\n<br />\r\nМОЖЕТ МНОГОЕ<br />\r\nС современным процессором AMD A10-9600P и оперативной памятью 8 Гб с возможностью расширения до 32 Гб вам больше не придётся сталкиваться с зависаниями в режиме многозадачности или медленной загрузкой интернет-страниц. Приложения будут быстро запускаться и работать без промедлений. Продвинутая операционная система Windows 10 поможет использовать возможности ноутбука по максимуму.<br />\r\n<br />\r\nОТЛИЧНЫЙ ПОТЕНЦИАЛ<br />\r\nДля хранения большого количества ваших медиафайлов, рабочей документации и прочих данных предусмотрен жёсткий диск на 1 Тб. Общайтесь с родными и близкими в любом месте с помощью встроенных веб-камеры и чувствительного микрофона.</p>",
+      "price": "38700.00",
+      "quantity": 7,
+      "discount": 0,
+      "is_active": true,
+      "views": 2,
+      "tags": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "seller": null,
+      "title": "Apple MacBook Pro 16 i7 2,6/64/8T/RP 5600M 8Gb SG",
+      "slug": "apple-macbook-pro-16-i7-26648trp-5600m-8gb-sg",
+      "image": "products/30050747b.jpg",
+      "short_desc": "<p>Полная информация о товаре, изготовителе, комплектации, технических характеристиках и функциях содержится в технической документации.</p>",
+      "description": "<p>Полная информация о товаре, изготовителе, комплектации, технических характеристиках и функциях содержится в технической документации.</p>",
+      "price": "627990.00",
+      "quantity": 2,
+      "discount": 0,
+      "is_active": true,
+      "views": 1,
+      "tags": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "main.tag",
+    "pk": 1,
+    "fields": {
+      "title": "Acer"
+    }
+  },
+  {
+    "model": "main.tag",
+    "pk": 2,
+    "fields": {
+      "title": "Apple"
+    }
+  },
+  {
+    "model": "main.category",
+    "pk": 1,
+    "fields": {
+      "title": "Ноутбуки",
+      "parent": null,
+      "description": "",
+      "is_active": true,
+      "slug": "noutbuki",
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 1,
+      "level": 0
+    }
+  },
+  {
+    "model": "main.profile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "date_of_birth": null,
+      "avatar": ""
+    }
+  }
+]
