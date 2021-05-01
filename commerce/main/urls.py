@@ -1,7 +1,7 @@
 from django.urls import path
 
 from main.views import ProductDetail, Home, CreateProduct, EditProduct, \
-    ProductList, ProfileUpdate
+    ProductList, ProfileUpdate, SearchProduct
 from django.contrib.flatpages import views
 # from django.views.decorators.cache import cache_page
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('product/<slug:product_slug>/', ProductDetail.as_view(),
          name='product'),
     path('products/add/', CreateProduct.as_view(), name='create-product'),
+    path('products/search/', SearchProduct.as_view(), name='search-product'),
     path('product/<slug:product_slug>/edit/', EditProduct.as_view(),
          name='edit-product'),
     path('products/', ProductList.as_view(), name='products'),

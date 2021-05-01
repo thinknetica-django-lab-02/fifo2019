@@ -34,8 +34,10 @@
 
             {% if request.user.is_authenticated %}
                 <span>
-                    <a href="{% url 'create-product' %}" class="link-warning">Добавить товар</a>
-                    | <a href="{% url 'profile-update' %}" class="link-warning">Профиль</a>
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'create-product' %}" class="link-warning">Добавить товар</a> |
+                    {% endif %}
+                    <a href="{% url 'profile-update' %}" class="link-warning">Профиль</a>
                     | <a href="{% url 'account_logout' %}" class="link-warning">Выйти</a>
                 </span>
             {% else %}
@@ -47,8 +49,8 @@
 
         </div>
 
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" action="/products/search/">
+            <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>

@@ -48,7 +48,7 @@
 
                                 <div>
                                     <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
-                                    {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
                                         <a href="{{ product.get_absolute_url }}edit/" class="btn btn-warning">Редактировать</a>
                                     {% endif %}
                                 </div>

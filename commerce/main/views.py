@@ -3,6 +3,7 @@ from django.db.models.base import Model
 from django.forms.forms import Form
 from django.http import HttpResponseRedirect, HttpResponse
 from django.http.request import HttpRequest
+from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, \
     UpdateView
 from django.views.generic.edit import CreateView
@@ -16,6 +17,7 @@ from django.db.models import F
 from django.core.cache import cache
 
 from django.db.models.query import QuerySet
+from django.contrib.postgres.search import SearchVector
 
 
 class Home(TemplateView):
@@ -90,6 +92,37 @@ class ProductList(ListView):
                     subsciber.delete()
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+class SearchProduct(ListView):
+    """Поиск товара"""
+
+    model = Product
+    template_name = 'main/search.html'
+    context_object_name = 'products'
+    paginate_by: int = 9
+
+    def get_context_data(self, **kwargs):
+        context: dict = super().get_context_data(**kwargs)
+        context['title'] = 'Результат поиска'
+
+        if self.request.GET.get('q'):
+            search_world = self.request.GET.get('q')
+            context['title'] += f' "{search_world}"'
+            context['search_world'] = search_world
+
+        return context
+
+    def get_queryset(self):
+
+        if self.request.GET.get('q'):
+            search_world = self.request.GET.get('q')
+
+            return Product.objects.annotate(
+                search=SearchVector('title', 'description'),
+            ).filter(search=search_world)
+        else:
+            return []
 
 
 class ProductDetail(DetailView):
