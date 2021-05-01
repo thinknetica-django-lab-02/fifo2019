@@ -21,7 +21,6 @@
                     {% for product in products %}
 
                         <div class="card m-3" style="width: 18rem; height: 400px;">
-
 {#                            {% with gallery=product.gallery.first %}#}
 {#                                {% if gallery %}#}
 {#                                    <img src="{{ gallery.image.url }}" width="200" height="200" class="card-img-top"#}
@@ -59,7 +58,6 @@
                 </div>
             </div>
 
-
             <div class="col col-lg-2">
 
                 <div class="d-flex justify-content-end" style="height: 36px;">
@@ -70,10 +68,10 @@
 
                 <div class="d-flex flex-wrap">
                     {% for tag in tags %}
-                        {% if active_tag == tag.title %}
-                            <a class="btn m-1 btn-outline-info active">{{ tag.title }}</a>
+                        {% if active_tag == tag %}
+                            <a class="btn m-1 btn-outline-info active">{{ tag }}</a>
                         {% else %}
-                            <a href="?tag={{ tag.title }}" class="btn m-1 btn-outline-info">{{ tag.title }}</a>
+                            <a href="?tag={{ tag }}" class="btn m-1 btn-outline-info">{{ tag }}</a>
                         {% endif %}
                     {% endfor %}
                 </div>

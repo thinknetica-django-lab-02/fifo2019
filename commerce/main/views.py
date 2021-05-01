@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
 from main.forms import UserForm, ProfileFormSet, ProductForm
-from main.models import Product, Subsciber, Tag
+from main.models import Product, Subsciber
 
 from django.db.models import F
 from django.core.cache import cache
@@ -50,7 +50,11 @@ class ProductList(ListView):
         context['subsciber'] = Subsciber.objects.filter(
                                    user__pk=self.request.user.pk
                                ).first()
-        context['tags'] = Tag.objects.all()
+        context['tags'] = set()
+        for tag_list in Product.objects.values_list('tags'):
+            if tag_list[0]:
+                for tag in tag_list[0]:
+                    context['tags'].add(tag)
 
         if self.request.GET.get('tag'):
             tag_name: str = self.request.GET.get('tag')
@@ -65,7 +69,7 @@ class ProductList(ListView):
             tag_name: str = self.request.GET.get('tag')
 
             if tag_name != 'all_goods':
-                return queryset.filter(tags__title=tag_name)
+                return queryset.filter(tags__overlap=[tag_name])
 
         return queryset
 

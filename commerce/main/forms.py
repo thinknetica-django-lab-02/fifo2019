@@ -3,9 +3,12 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
 
 from main.models import Profile, Product
+from django.contrib.postgres.forms import SimpleArrayField
 
 
 class ProductForm(forms.ModelForm):
+    tags = SimpleArrayField(forms.CharField(widget=forms.Textarea()), delimiter=',')
+
     class Meta:
         model = Product
         fields = (

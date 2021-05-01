@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     bottom: -1px;
     right: 60px;
     cursor: pointer;
@@ -32,7 +32,7 @@ body {
     flex-direction: column;
     width: 340px;
     height: 445px;
-    position: absolute;
+    position: fixed;
     bottom: 26px;
     right: 60px;
 }

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db import models
 from django.utils.safestring import mark_safe
 
-from main.models import Product, Category, Subsciber, Tag
+from main.models import Product, Category, Subsciber
 from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
 from ckeditor.widgets import CKEditorWidget
@@ -46,14 +46,9 @@ class SubsciberAdmin(admin.ModelAdmin):
     pass
 
 
-class TagAdmin(admin.ModelAdmin):
-    pass
-
-
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, CreditFlatPageAdmin)
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subsciber, SubsciberAdmin)
-admin.site.register(Tag, TagAdmin)

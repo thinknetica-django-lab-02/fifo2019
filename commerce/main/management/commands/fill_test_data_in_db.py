@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from main.models import Category, Tag, Product
+from main.models import Category, Product
 
 
 class Command(BaseCommand):
@@ -21,8 +21,6 @@ class Command(BaseCommand):
                     title=product["category"]["title"], slug=product["category"]["slug"]
                 )[0]
                 new_product.save()
-
-                new_product.tags.add(Tag.objects.get_or_create(title=product["tags"])[0])
 
         self.stdout.write(self.style.SUCCESS("Successfully closed command fill test data in db."))
 

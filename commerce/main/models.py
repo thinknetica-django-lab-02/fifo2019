@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.urls import reverse
@@ -61,7 +62,10 @@ class Product(models.Model):
         null=True, blank=True, related_name="products",
         verbose_name="Продавец"
     )
-    tags = models.ManyToManyField('Tag', blank=True, verbose_name='Теги')
+    tags = ArrayField(
+        models.CharField(max_length=100, blank=True),
+        default=list, verbose_name='Теги'
+    )
     title = models.CharField(max_length=255, verbose_name='Наименование')
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Slug")
     image = models.ImageField(upload_to='products/', blank=True, null=True,
@@ -120,18 +124,6 @@ class Gallery(models.Model):
 
     def __str__(self) -> str:
         return self.image.url
-
-
-class Tag(models.Model):
-    title = models.CharField(max_length=50, unique=True, verbose_name='Тег')
-
-    class Meta:
-        verbose_name = 'Тег'
-        verbose_name_plural = 'Теги'
-        ordering = ['title']
-
-    def __str__(self) -> str:
-        return self.title
 
 
 class Category(MPTTModel):
