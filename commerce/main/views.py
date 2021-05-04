@@ -114,6 +114,7 @@ class SearchProduct(ListView):
         return context
 
     def get_queryset(self):
+        queryset = super().get_queryset()
 
         if self.request.GET.get('q'):
             search_world = self.request.GET.get('q')
@@ -121,9 +122,8 @@ class SearchProduct(ListView):
             return Product.objects.annotate(
                 search=SearchVector('title', 'description'),
             ).filter(search=search_world)
-        else:
-            return []
 
+        return queryset
 
 class ProductDetail(DetailView):
     """Карточка товара"""

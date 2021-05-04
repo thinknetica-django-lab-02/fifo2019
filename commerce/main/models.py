@@ -111,6 +111,13 @@ class Product(models.Model):
         return reverse('product', kwargs={'product_slug': self.slug})
 
 
+class ViewsProduct(models.Model):
+    views = models.IntegerField(default=0)
+
+    class Meta:
+        managed = False
+
+
 class Gallery(models.Model):
     image = models.ImageField(upload_to='products/',
                               verbose_name="Изображение")

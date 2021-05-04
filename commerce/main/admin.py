@@ -8,6 +8,25 @@ from django.contrib.flatpages.models import FlatPage
 from ckeditor.widgets import CKEditorWidget
 
 
+class ArrayFieldListFilter(admin.SimpleListFilter):
+    """ ArrayField - tags product """
+
+    title = 'Keywords'
+    parameter_name = 'keywords'
+
+    def lookups(self, request, model_admin):
+        keywords = Product.objects.values_list("tags", flat=True)
+        keywords = [(kw, kw) for sublist in keywords for kw in sublist if kw]
+        keywords = sorted(set(keywords))
+        return keywords
+
+    def queryset(self, request, queryset):
+        lookup_value = self.value()
+        if lookup_value:
+            queryset = queryset.filter(tags__contains=[lookup_value])
+        return queryset
+
+
 class CreditFlatPageAdmin(FlatPageAdmin):
     formfield_overrides = {
         models.TextField: {'widget': CKEditorWidget}
@@ -19,7 +38,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'title')
     fields = ("title", "short_desc", "description", "category", "tags", "image", "get_html_image", "price", "quantity", "discount", "is_active", "views")
     readonly_fields = ('get_html_image',)
-    list_filter = ('tags',)
+    list_filter = (ArrayFieldListFilter, )
     exclude = ('slug',)
     actions = ['make_is_active', 'make_not_active']
 
