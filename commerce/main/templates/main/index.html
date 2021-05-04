@@ -1,4 +1,5 @@
-{% extends 'main/layuot/base.html' %}
+{% extends request.is_mobile|yesno:"main/mobile/base.html,main/layuot/base.html" %}
+
 {% load main_filters %}
 
 
