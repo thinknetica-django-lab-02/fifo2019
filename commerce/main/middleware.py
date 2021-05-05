@@ -8,6 +8,6 @@ class MobileVersionMiddleware:
         http_user_agent = request.META.get('HTTP_USER_AGENT', '')
 
         if 'Mobile' in http_user_agent:
-            request.is_mobile = 'main/mobile/base.html'
+            request.is_mobile = True
 
         return self.get_response(request)

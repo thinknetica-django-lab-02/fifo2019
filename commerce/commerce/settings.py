@@ -275,3 +275,58 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+ADMINS = [('Павел', 'paveldudkov003@gmail.com')]
+SERVER_EMAIL = EMAIL_HOST_USER
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        },
+        'mail_admins': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'  # log while DEBUG=True
+        }
+    },
+    # 'filters': { # TODO: раскоментировать когд debug false
+    #     'require_debug_false': {
+    #         '()': 'django.utils.log.RequireDebugFalse'
+    #     }
+    # },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+        'debug_mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            # 'filters': ['require_debug_false'],  # TODO: раскомментировать когд debug false
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'mail_admins',
+        },
+    },
+    'loggers': {
+        'main': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['debug_mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
