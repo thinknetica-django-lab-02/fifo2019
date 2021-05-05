@@ -18,5 +18,35 @@
         </p>
 
     </section>
-
 {% endblock content %}
+
+
+{% block js %}
+    {{ block.super }}
+
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "name" : "E-commerce",
+          "alternateName": "E-commerce - коммерческий",
+          "description": "Описание компании",
+          "url": "http://E-commerce.com",
+          "email": "E-commerce@mail.ru",
+          "legalName": "ООО «E-commerce»",
+          "logo": "http://E-commerce.com/icon.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "RU",
+            "addressLocality": "Moscow",
+            "addressRegion": "Moscow",
+            "postalCode": "410000",
+            "streetAddress": " ул. Большая Казачья, д. 3А"
+          },
+          "telephone": "+7 960 777 77 77",
+          "sameAs" : [
+            "https://www.instagram.com/E-commerce/"
+          ]
+        }
+    </script>
+{% endblock js %}

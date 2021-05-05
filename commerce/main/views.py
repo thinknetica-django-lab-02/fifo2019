@@ -30,6 +30,7 @@ class Home(TemplateView):
     ) -> dict:
         context: dict = super().get_context_data(**kwargs)
         context['title'] = "Главная"
+        context['description'] = "Описание главной страницы для E-commerce"
         context['turn_on_block'] = True
         return context
 
@@ -48,6 +49,7 @@ class ProductList(ListView):
     ) -> dict:
         context: dict = super().get_context_data(**kwargs)
         context['title'] = 'Продукты'
+        context['description'] = "Описание страницы c товарами"
         context['active_tag'] = 'all_goods'
         context['subsciber'] = Subsciber.objects.filter(
                                    user__pk=self.request.user.pk
@@ -125,6 +127,7 @@ class SearchProduct(ListView):
 
         return queryset
 
+
 class ProductDetail(DetailView):
     """Карточка товара"""
 
@@ -140,6 +143,7 @@ class ProductDetail(DetailView):
     ) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = context['product']
+        context['description'] = f"Описание страницы товара: {context['product']}"
         context['views'] = cache.get_or_set(f"view-{self.object.pk}",
                                             f"{self.object.views}", 60)
         return context
