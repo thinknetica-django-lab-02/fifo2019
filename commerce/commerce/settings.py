@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'debug_toolbar',
     'channels',
+    'django.contrib.sitemaps',
     'main.apps.MainConfig',
 ]
 
@@ -147,7 +148,7 @@ STATICFILES_DIRS = []
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-SITE_ID = 1
+SITE_ID = 2
 
 ####################################
 # CKEDITOR CONFIGURATION #

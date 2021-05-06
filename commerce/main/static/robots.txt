@@ -1,0 +1,15 @@
+User-agent: Googlebot
+User-agent: Yandex
+User-agent: *
+
+Disallow: /admin
+Disallow: /ckeditor
+Disallow: /accounts
+Disallow: /add
+Disallow: /search
+Disallow: /edit
+Disallow: /profile
+Disallow: /*?
+
+Host: http://e-commerce.com/
+Sitemap: http://e-commerce.com/sitemap.xml

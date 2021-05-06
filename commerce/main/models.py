@@ -18,39 +18,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Product(models.Model):
-    """
-    Модель товара.
 
-    :param category: Для хранение внешнего ключа связанной модели Category
-    :type category: int
-    :param seller: Для хранение внешнего ключа связанной модели Seller
-    :type seller: int
-    :param tags: Для хранение внешнего ключа связанной модели Tag
-    :type tags: int
-    :param title: Именование товара, максимальная длина 255 символов,
-                  не может быть пустым
-    :type title: str
-    :param slug: URL-путь для представления, максимальная длина 255 символов,
-                 не может быть пустым
-    :type slug: str
-    :param image: URL-путь до изображения, может быть пустым
-    :type image: str
-    :param short_desc: Краткое описание товара, максимальная длина 60 символов,
-                       может быть пустым
-    :type short_desc: str
-    :param description: Описание товара, может быть пустым
-    :type description: str
-    :param price: Цена товара, два символа поле запятой, по умолчанию 0
-    :type price: float
-    :param quantity: Количество товара на складе, по умолчанию 0
-    :type quantity: int
-    :param discount: Скидка на товар, по умолчанию 0
-    :type discount: int
-    :param is_active: Активен товар или нет
-    :type is_active: bool
-    :param views: Количество просмотров на странци товара, по умолчанию 0
-    :type views: int
-    """
+    """Модель товара."""
 
     category = models.ForeignKey(
         'Category', on_delete=models.CASCADE,
